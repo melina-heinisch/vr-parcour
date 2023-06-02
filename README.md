@@ -1,5 +1,10 @@
 # ss23-3dui-project-template
 
+# Overview
+
+This repo contains the 3DUI SS 23 Unity Project Template as a starting point for Team project own repository and exercises sessions.
+
+- <span style="color: red;">Available in Week 08 - Exercise Sessions </span>
 
 
 ## Getting started
