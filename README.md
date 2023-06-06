@@ -16,4 +16,4 @@
 
 ## Quick Start Videos
 
--  **How to clone and start:** [video](https://gitlab2.informatik.uni-wuerzburg.de/hci/students/3dui/ss23/ss23-3dui-project-template/-/blob/main/Videos/vr-parkour-template-scene-cloning-and-overview.mp4)(in repo)
+-  **How to clone and start:** [video](https://gitlab2.informatik.uni-wuerzburg.de/hci/students/3dui/ss23/ss23-3dui-project-template/-/blob/main/Videos/vr-parkour-template-scene-cloning-and-overview.mp4)
