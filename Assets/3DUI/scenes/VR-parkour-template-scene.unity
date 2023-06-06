@@ -1111,7 +1111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VRHostSystem: {fileID: 39433392}
-  menuPrefab: {fileID: 1304486165084064968, guid: 49dc3f8f7d704254fba76b5c5a286934,
+  menuPrefab: {fileID: 1304486165084064968, guid: 64c8f021e164d694cb1efe2ffb89b598,
     type: 3}
 --- !u!114 &30328068
 MonoBehaviour:
