@@ -14,6 +14,6 @@
     - are attached to the **Left/RightHandController Game Objects**
     - All related and given assets are **Assets/3DUI/** and **Assets/3DUI/3DUI External Assets**
 
-## Quick Start Video - How to install and start-
+## Quick Start Video - How to clone and start
 
-- https://gitlab2.informatik.uni-wuerzburg.de/hci/students/3dui/ss23/ss23-3dui-project-template/-/blob/main/Videos/vr-parkour-template-scene-cloning-and-overview.mp4
+-  [video](https://gitlab2.informatik.uni-wuerzburg.de/hci/students/3dui/ss23/ss23-3dui-project-template/-/blob/main/Videos/vr-parkour-template-scene-cloning-and-overview.mp4)(in repo)
