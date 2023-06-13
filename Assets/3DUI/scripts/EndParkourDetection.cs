@@ -10,7 +10,11 @@ public class EndParkourDetection : MonoBehaviour
         if(other.CompareTag("VRUserBodyPart"))
         {
             Debug.Log("Player finished the race!!");
-            gameObject.SetActive(false);
+            GetComponent<AudioSource>().Play();
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<BoxCollider>().enabled = false;
+            transform.Find("Text (TMP)").gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 }

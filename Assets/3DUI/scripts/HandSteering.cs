@@ -67,7 +67,9 @@ public class HandSteering : MonoBehaviour
                     (speedInMeterPerSecond * Time.deltaTime * thumbstickAxisValue.y);
                 
                 //Translate Left/right Moving
-                    // do something here (Exercise tasks)
+                VRHostSystem.getXROrigin().transform.position +=
+                    handController.transform.right * 
+                    (speedInMeterPerSecond * Time.deltaTime * thumbstickAxisValue.x);
 
                 if (bModeSnapRotation)
                 {
@@ -76,9 +78,9 @@ public class HandSteering : MonoBehaviour
                 else
                 {
                     //// Smooth Rotate Left/right Moving
-                    VRHostSystem.getXROrigin()
-                        .transform
-                        .Rotate(Vector3.up, angleInDegreePerSecond * Time.deltaTime * thumbstickAxisValue.x);
+                    // VRHostSystem.getXROrigin()
+                    //     .transform
+                    //     .Rotate(Vector3.up, angleInDegreePerSecond * Time.deltaTime * thumbstickAxisValue.x);
                 }
             }
         }
