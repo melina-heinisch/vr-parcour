@@ -11,10 +11,15 @@ public class HandSteering : MonoBehaviour
     public float speedInMeterPerSecond = 1;
     public float angleInDegreePerSecond = 25;
     public float anglePerClick = 45;
+    public AnimationCurve highSpeedModeAccelerationCurve;
 
     private GameObject handController;
     private bool bModeSnapRotation;
     private bool isStickWasPressed;
+    private bool triggerWasPressed;
+    private float timeSinceStartedHighSpeedMode = 0.0f;
+    private bool snapRotationExecuted = false;
+    private bool highSpeedModeActivated = false;
 
     void Start()
     {
@@ -31,6 +36,7 @@ public class HandSteering : MonoBehaviour
                 MoveTrackingSpaceRootWithHandSteering();
             }
         }
+        
     }
 
     private void GetHandControllerGameObject()
@@ -42,6 +48,19 @@ public class HandSteering : MonoBehaviour
     {
         if (VRHostSystem.GetLeftHandDevice().isValid) // still connected?
         {
+            if (VRHostSystem.GetLeftHandDevice().TryGetFeatureValue(CommonUsages.triggerButton, out bool triggerPressedNow))
+            {
+                if (triggerPressedNow)
+                {
+                    triggerWasPressed = true;
+                }
+                else if (triggerWasPressed) // release
+                {
+                    highSpeedModeActivated = !highSpeedModeActivated;
+                    triggerWasPressed = false;
+                    Debug.Log("Highspeedmode " + highSpeedModeActivated);
+                }
+            }
             if (VRHostSystem.GetLeftHandDevice().TryGetFeatureValue(CommonUsages.primary2DAxisClick, out bool isStickPressedNow))
             {    // see https://docs.unity3d.com/Manual/xr_input.html 
                 if (isStickPressedNow)
@@ -61,26 +80,52 @@ public class HandSteering : MonoBehaviour
 
             if (VRHostSystem.GetLeftHandDevice().TryGetFeatureValue(CommonUsages.primary2DAxis, out thumbstickAxisValue))
             {
-                // Translate front/back Moving
-                VRHostSystem.getXROrigin().transform.position +=
-                    handController.transform.forward * 
-                    (speedInMeterPerSecond * Time.deltaTime * thumbstickAxisValue.y);
-                
-                //Translate Left/right Moving
-                VRHostSystem.getXROrigin().transform.position +=
-                    handController.transform.right * 
-                    (speedInMeterPerSecond * Time.deltaTime * thumbstickAxisValue.x);
-
-                if (bModeSnapRotation)
+                float speed = speedInMeterPerSecond;
+                if (highSpeedModeActivated)
                 {
-                    // do something here (Exercise tasks)
+                    // TODO: Doesn't work with animation curve
+                    timeSinceStartedHighSpeedMode = Time.deltaTime;
+                    float factor = highSpeedModeAccelerationCurve.Evaluate(timeSinceStartedHighSpeedMode);
+                    Debug.Log(factor); 
+                    speed = speedInMeterPerSecond * factor;
+                    //Debug.Log(speed);
                 }
                 else
                 {
-                    //// Smooth Rotate Left/right Moving
-                    // VRHostSystem.getXROrigin()
-                    //     .transform
-                    //     .Rotate(Vector3.up, angleInDegreePerSecond * Time.deltaTime * thumbstickAxisValue.x);
+                    timeSinceStartedHighSpeedMode = 0f;
+                }
+                // Translate front/back Moving
+                VRHostSystem.getXROrigin().transform.position +=
+                    handController.transform.forward * 
+                    (speed * Time.deltaTime * thumbstickAxisValue.y);
+                
+                //Translate Left/right Moving
+                // VRHostSystem.getXROrigin().transform.position +=
+                //     handController.transform.right * 
+                //     (speedInMeterPerSecond * Time.deltaTime * thumbstickAxisValue.x);
+
+                if (bModeSnapRotation)
+                {
+                   // Vector3 currentRotation = VRHostSystem.getXROrigin().transform.rotation.eulerAngles;
+                   // VRHostSystem.getXROrigin().transform.rotation = Quaternion.Euler(currentRotation.x, 45 + currentRotation.y, currentRotation.z);
+                   if (thumbstickAxisValue.x == 0)
+                   {
+                       snapRotationExecuted = false;
+                   }
+                   if (!snapRotationExecuted && Mathf.Abs(thumbstickAxisValue.x) >= 0.5)
+                   {
+                       int direction = thumbstickAxisValue.x > 0 ? 1 : -1;
+                       VRHostSystem.getXROrigin().transform.Rotate(Vector3.up, direction * 45);
+                       snapRotationExecuted = true;
+                   }
+                   
+                }
+                else
+                {
+                    // Smooth Rotate Left/right Moving
+                    VRHostSystem.getXROrigin()
+                         .transform
+                         .Rotate(Vector3.up, angleInDegreePerSecond * Time.deltaTime * thumbstickAxisValue.x);
                 }
             }
         }
