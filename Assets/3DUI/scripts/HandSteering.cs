@@ -83,12 +83,9 @@ public class HandSteering : MonoBehaviour
                 float speed = speedInMeterPerSecond;
                 if (highSpeedModeActivated)
                 {
-                    // TODO: Doesn't work with animation curve
                     timeSinceStartedHighSpeedMode += Time.deltaTime;
                     float factor = highSpeedModeAccelerationCurve.Evaluate(timeSinceStartedHighSpeedMode);
-                    Debug.Log(factor); 
-                    speed = speedInMeterPerSecond * (1 + factor);
-                    //Debug.Log(speed);
+                    speed = speedInMeterPerSecond * (1 + factor * 4);
                 }
                 else
                 {
