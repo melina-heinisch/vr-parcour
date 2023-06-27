@@ -13,6 +13,12 @@ public class Jumping : MonoBehaviour
     private RaycastHit lastRayCastHit;
     private bool bButtonWasPressed = false;
 
+
+    public float angleInDegreePerSecond = 100;
+
+    [SerializeField] private GameObject preTravelObject;
+    [SerializeField] private GameObject postTravelObject;
+
     void Start()
     {
         getXRHandController();
@@ -26,6 +32,13 @@ public class Jumping : MonoBehaviour
             if (VRHostSystem.AreAllDevicesFound())
             {
                 getPointCollidingWithRayCasting();
+                
+                if (StateController.preTravelModeActivated)
+                {
+                    preTravelObject.gameObject.transform.position = lastRayCastHit.point;
+                    RotatePreTravelObject();
+                }
+
                 MoveTrackingSpaceRootWithJumping();
             }
         }
@@ -51,6 +64,18 @@ public class Jumping : MonoBehaviour
         }
     }
 
+    private void RotatePreTravelObject()
+    {
+        Vector2 thumbstickAxisValue; //  where left (-1.0,0.0), right (1.0,0.0), up (0.0,1.0), down (0.0,-1.0)
+
+        if (VRHostSystem.GetLeftHandDevice().TryGetFeatureValue(CommonUsages.primary2DAxis, out thumbstickAxisValue))
+        {
+            preTravelObject
+                .transform
+                .Rotate(Vector3.up, angleInDegreePerSecond * Time.deltaTime * thumbstickAxisValue.x);
+        }
+    }
+
     private void MoveTrackingSpaceRootWithJumping()
     {
         if (VRHostSystem.GetLeftHandDevice().isValid)
@@ -60,12 +85,21 @@ public class Jumping : MonoBehaviour
                 if (!bButtonWasPressed && triggerButton && lastRayCastHit.collider != null)
                 {
                     bButtonWasPressed = true;
+                    StateController.preTravelModeActivated = true;
+                    preTravelObject.SetActive(true);
+                    preTravelObject.transform.rotation = VRHostSystem.getXROriginGameObject().transform.rotation;
                 }
                 if (!triggerButton && bButtonWasPressed)
                 {
+                    postTravelObject.SetActive(true);
+                    postTravelObject.transform.position = VRHostSystem.getXROriginGameObject().transform.position;
+                    postTravelObject.transform.rotation = VRHostSystem.getXROriginGameObject().transform.rotation;
                     bButtonWasPressed = false;
+                    StateController.preTravelModeActivated = false;
                     VRHostSystem.getXROriginGameObject().transform.position = lastRayCastHit.point;
+                    VRHostSystem.getXROriginGameObject().transform.rotation = preTravelObject.transform.rotation;
                     Debug.Log("Jumping! " + Time.deltaTime);
+                    preTravelObject.SetActive(false);
                 }
             }
         }
