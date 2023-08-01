@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class Jumping : MonoBehaviour
+public class Teleportation : MonoBehaviour
 {
     [Tooltip("You need to manually add reference to the VRHostSystem GameObject")]
     public VRHostSystem VRHostSystem;
@@ -17,7 +17,6 @@ public class Jumping : MonoBehaviour
     public float angleInDegreePerSecond = 100;
 
     [SerializeField] private GameObject preTravelObject;
-    [SerializeField] private GameObject postTravelObject;
 
     void Start()
     {
@@ -33,11 +32,11 @@ public class Jumping : MonoBehaviour
             {
                 getPointCollidingWithRayCasting();
                 
-                // if (StateController.preTravelModeActivated)
-                // {
-                //     preTravelObject.gameObject.transform.position = lastRayCastHit.point;
-                //     RotatePreTravelObject();
-                // }
+                if (StateController.preTravelModeActivated)
+                {
+                    preTravelObject.gameObject.transform.position = lastRayCastHit.point;
+                    RotatePreTravelObject();
+                }
 
                 MoveTrackingSpaceRootWithJumping();
             }
@@ -86,21 +85,18 @@ public class Jumping : MonoBehaviour
                 if (!bButtonWasPressed && leftGripButton && rightGripButton && lastRayCastHit.collider != null)
                 {
                     bButtonWasPressed = true;
-                    // StateController.preTravelModeActivated = true;
-                    // preTravelObject.SetActive(true);
-                    // preTravelObject.transform.rotation = VRHostSystem.getXROriginGameObject().transform.rotation;
+                    StateController.preTravelModeActivated = true;
+                    preTravelObject.SetActive(true);
+                    preTravelObject.transform.rotation = VRHostSystem.getXROriginGameObject().transform.rotation;
                 }
                 if (!leftGripButton && !rightGripButton && bButtonWasPressed)
                 {
-                    // postTravelObject.SetActive(true);
-                    // postTravelObject.transform.position = VRHostSystem.getXROriginGameObject().transform.position;
-                    // postTravelObject.transform.rotation = VRHostSystem.getXROriginGameObject().transform.rotation;
                     bButtonWasPressed = false;
-                    // StateController.preTravelModeActivated = false;
+                    StateController.preTravelModeActivated = false;
                     VRHostSystem.getXROriginGameObject().transform.position = lastRayCastHit.point;
                     VRHostSystem.getXROriginGameObject().transform.rotation = preTravelObject.transform.rotation;
                     Debug.Log("Jumping! " + Time.deltaTime);
-                    // preTravelObject.SetActive(false);
+                    preTravelObject.SetActive(false);
                 }
             }
         }

@@ -21,9 +21,7 @@ public class HandSteering : MonoBehaviour
     private bool snapRotationExecuted = false;
     private bool highSpeedModeActivated = false;
 
-    private Vector3 grabStartPoint = Vector3.zero;
     private GameObject leftHandController;
-    [SerializeField] private float grabSpeed = 1.0f;
     
     void Start()
     {
@@ -39,7 +37,6 @@ public class HandSteering : MonoBehaviour
             if (VRHostSystem.AreAllDevicesFound())
             {
                 MoveTrackingSpaceRootWithHandSteering();
-                GrabTheAir();
             }
         }
     }
@@ -143,30 +140,5 @@ public class HandSteering : MonoBehaviour
         }
     }
 
-    private void GrabTheAir()
-    {
-        if (VRHostSystem.GetLeftHandDevice().isValid) // still connected?
-        {
-            if (VRHostSystem.GetLeftHandDevice()
-                .TryGetFeatureValue(CommonUsages.gripButton, out bool gripPressedNow))
-            {
-                if (!gripPressedNow)
-                {
-                    grabStartPoint = Vector3.zero;
-                }
-                else
-                {
-                    if(grabStartPoint == Vector3.zero)
-                        grabStartPoint = leftHandController.transform.position;
-                    else
-                    {
-                        var currentControllerPosition = leftHandController.transform.position;
-                        var distance = (grabStartPoint - currentControllerPosition) * grabSpeed;
-                        VRHostSystem.getXROrigin().transform.Translate(distance);
-                        grabStartPoint = leftHandController.transform.position;
-                    }
-                }
-            }
-        }
-    }
+    
 }
