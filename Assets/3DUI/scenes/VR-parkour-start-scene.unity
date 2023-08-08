@@ -455,9 +455,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18756739}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 348b61fb3c211ac4d9b19213a2c23b8e, type: 3}
-  m_Controller: {fileID: 9100000, guid: 77244ec3d3f8fb44a9639a826e91aa57, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5f3d3bec325d32c4ba14cb14fbcdc2cb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -474,11 +474,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18756739}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eea4100d558b9d04e833c4edc027324c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  gripTarget: 0
+  gripCurrent: 0
   speed: 10
 --- !u!1001 &19963109
 PrefabInstance:
@@ -730,7 +733,6 @@ GameObject:
   - component: {fileID: 30328067}
   - component: {fileID: 30328068}
   - component: {fileID: 30328076}
-  - component: {fileID: 30328077}
   m_Layer: 0
   m_Name: LeftHand Controller
   m_TagString: VRUserBodyPart
@@ -1298,19 +1300,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &30328077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30328058}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e66c26e807c6644190ca823e16b51f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hand: {fileID: 18756742}
 --- !u!1 &39433390
 GameObject:
   m_ObjectHideFlags: 0
@@ -6672,8 +6661,13 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 348b61fb3c211ac4d9b19213a2c23b8e,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 348b61fb3c211ac4d9b19213a2c23b8e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5f3d3bec325d32c4ba14cb14fbcdc2cb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 348b61fb3c211ac4d9b19213a2c23b8e, type: 3}
 --- !u!1001 &430267559
@@ -15786,11 +15780,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268191193}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eea4100d558b9d04e833c4edc027324c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  gripTarget: 0
+  gripCurrent: 0
   speed: 10
 --- !u!1 &1271065011
 GameObject:
@@ -24210,7 +24207,6 @@ GameObject:
   - component: {fileID: 1860304540}
   - component: {fileID: 1860304541}
   - component: {fileID: 1860304542}
-  - component: {fileID: 1860304543}
   m_Layer: 0
   m_Name: RightHand Controller
   m_TagString: VRUserBodyPart
@@ -24740,19 +24736,6 @@ MonoBehaviour:
   VRHostSystem: {fileID: 39433392}
   previousMaterial: {fileID: 0}
   previousParent: {fileID: 0}
---- !u!114 &1860304543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860304530}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e66c26e807c6644190ca823e16b51f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hand: {fileID: 1268191195}
 --- !u!1001 &1868445625
 PrefabInstance:
   m_ObjectHideFlags: 0
