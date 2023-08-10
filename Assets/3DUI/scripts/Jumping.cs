@@ -8,7 +8,7 @@ public class Jumping : MonoBehaviour
     public VRHostSystem VRHostSystem;
 
     public Rigidbody rigidbody;
-    public float jumpforce = 3f;
+    public float jumpforce = 4f;
 
     private RaycastHit lastRayCastHit;
     private bool bButtonWasPressed = false;
@@ -28,12 +28,13 @@ public class Jumping : MonoBehaviour
                 if (!bButtonWasPressed && leftGripButton && rightGripButton)
                 {
                     bButtonWasPressed = true;
+                    rigidbody.AddForce(Vector3.up * jumpforce,ForceMode.Impulse);
+                    Debug.Log("Jumping! " + Time.deltaTime);
                 }
                 if (!leftGripButton && !rightGripButton && bButtonWasPressed)
                 {
                     bButtonWasPressed = false;
-                    rigidbody.AddForce(Vector3.up * jumpforce,ForceMode.Impulse);
-                    Debug.Log("Jumping! " + Time.deltaTime);
+                    
                 }
             }
         }
