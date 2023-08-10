@@ -66,7 +66,7 @@ public class HandSwinging : MonoBehaviour
                      (rightHandDistanceMoved - playerDistanceMoved)) * 2f;
 
         if (Time.timeSinceLevelLoad > 1f)
-            transform.position += forwardDirection.transform.forward * (handSpeed * speed * Time.deltaTime);
+            VRHostSystem.getXROriginGameObject().transform.position += forwardDirection.transform.forward * (handSpeed * speed * Time.deltaTime);
 
             //Set previous positions of hands for the next frame
         positionPreviousFrameLeftHand = positionThisFrameLeftHand; //Set player position previous frame
