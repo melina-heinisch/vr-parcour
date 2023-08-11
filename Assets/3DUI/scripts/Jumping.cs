@@ -1,5 +1,6 @@
 ﻿
 using UnityEngine;
+// using UnityEngine.InputSystem; FOr testing at home
 using UnityEngine.XR;
 
 public class Jumping : MonoBehaviour
@@ -12,6 +13,8 @@ public class Jumping : MonoBehaviour
 
     private RaycastHit lastRayCastHit;
     private bool bButtonWasPressed = false;
+
+    private int jumpCounter = 0;
 
     void Update()
     {
@@ -28,15 +31,31 @@ public class Jumping : MonoBehaviour
                 if (!bButtonWasPressed && leftGripButton && rightGripButton)
                 {
                     bButtonWasPressed = true;
-                    rigidbody.AddForce(Vector3.up * jumpforce,ForceMode.Impulse);
+                    rigidbody.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+                    jumpCounter++;
                     Debug.Log("Jumping! " + Time.deltaTime);
                 }
                 if (!leftGripButton && !rightGripButton && bButtonWasPressed)
                 {
                     bButtonWasPressed = false;
-                    
                 }
             }
-        }
+        } 
+
+     /* For testing Jump at Home
+      if (Keyboard.current.spaceKey.wasPressedThisFrame)
+      {
+          if (jumpCounter < 2)
+          {
+              rigidbody.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+              jumpCounter++;
+              Debug.Log("Jumping! " + Time.deltaTime);
+          }
+      } */
+    }
+    
+    void OnCollisionEnter(Collision collision)
+    {
+        jumpCounter = 0;
     }
 }
