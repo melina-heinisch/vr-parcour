@@ -2442,6 +2442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37177393c12203743b9026719802e050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameRunning: 1
   timeRemaining: 60
   timerActive: 0
   isGameOver: 0
@@ -12085,7 +12086,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 2, z: 0.6}
+  m_Size: {x: 0.6, y: 2, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &841132393
 Rigidbody:

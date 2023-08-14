@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class GameLogic : MonoBehaviour
 {
+    public bool isGameRunning = true;
     public float timeRemaining = 60;
     public bool timerActive = false;
     public bool isGameOver = false;
@@ -22,34 +23,39 @@ public class GameLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timerActive)
+        if (isGameRunning)
         {
-            
-          if (timeRemaining > 0)
-              timeRemaining -= Time.deltaTime;
-          else
+          if (timerActive)
           {
-              isGameOver = true;
-              timerActive = false;
-              timeRemaining = 0;
+              
+            if (timeRemaining > 0)
+                timeRemaining -= Time.deltaTime;
+            else
+            {
+                isGameOver = true;
+                timerActive = false;
+                timeRemaining = 0;
+            }
+            GetTimeInMinSec(timeRemaining);
           }
-          GetTimeInMinSec(timeRemaining);
+
+          if (isGameOver)
+              GameOver();
+          else if (isWin)
+              GameWon();  
         }
         
-
-        if (isGameOver)
-            GameOver();
-        else if (isWin)
-            GameWon();
     }
 
     void GameOver()
     {
+        isGameRunning = false;
         Debug.Log("Game Over");
     }
 
     void GameWon()
     {
+        isGameRunning = false;
         Debug.Log("Game Won");
     }
 
