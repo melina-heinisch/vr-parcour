@@ -1,5 +1,6 @@
 ﻿
 using UnityEngine;
+using UnityEngine.Serialization;
 // using UnityEngine.InputSystem; FOr testing at home
 using UnityEngine.XR;
 
@@ -8,7 +9,7 @@ public class Jumping : MonoBehaviour
     [Tooltip("You need to manually add reference to the VRHostSystem GameObject")]
     public VRHostSystem VRHostSystem;
 
-    public Rigidbody rigidbody;
+    public Rigidbody rigidbodyObj;
     public float jumpforce = 4f;
 
     private RaycastHit lastRayCastHit;
@@ -31,7 +32,7 @@ public class Jumping : MonoBehaviour
                 if (!bButtonWasPressed && leftGripButton && rightGripButton)
                 {
                     bButtonWasPressed = true;
-                    rigidbody.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+                    rigidbodyObj.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
                     jumpCounter++;
                     Debug.Log("Jumping! " + Time.deltaTime);
                 }
