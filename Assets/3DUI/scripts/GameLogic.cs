@@ -30,22 +30,26 @@ public class GameLogic : MonoBehaviour
     private float restartTimerDuration = 10;
     public TextMeshProUGUI scoreboardList;
     public GameObject scoreboardPanel;
-
+    public GameObject keyboard;
+    public GameObject startSaveButton;
+    public GameObject nameInputField;
     
-    private List<ScoreBoardEntry> scoreboard = new ();
 
     private void Start()
     {
         timeRemaining = totalTime;
         timeTextGoal.text = GetTimeInMinSec(timeRemaining);
 
-        scoreboard.Add(new ScoreBoardEntry("Luise", 9.68f));
-        scoreboard.Add(new ScoreBoardEntry("Lars", 7.68f));
-        scoreboard.Add(new ScoreBoardEntry("Laura", 8.68f));
-        scoreboard.Add(new ScoreBoardEntry("Leon", 7.98f));
-        scoreboard.Add(new ScoreBoardEntry("Lea", 8.38f));
-        scoreboard = GetSortedScoreBoardEntries(scoreboard);
-
+        //Add dummy data
+        var sbm = ScoreBoardManager.Instance;
+        if (sbm.scoreBoard.Count == 0)
+        {
+            sbm.AddScoreBoardEntry(new ScoreBoardEntry("Luise", 9.68f));
+            sbm.AddScoreBoardEntry(new ScoreBoardEntry("Lars", 7.68f));
+            sbm.AddScoreBoardEntry(new ScoreBoardEntry("Laura", 8.68f));
+            sbm.AddScoreBoardEntry(new ScoreBoardEntry("Leon", 7.98f));
+            sbm.AddScoreBoardEntry(new ScoreBoardEntry("Lea", 8.38f));
+        }
     }
 
     // Update is called once per frame
@@ -89,6 +93,7 @@ public class GameLogic : MonoBehaviour
         Debug.Log("Game Won");
         string result = GetTimeInMinSec(totalTime - timeRemaining);
         timeTextResult.text = result;
+        startSaveButton.SetActive(true);
         resultPanel.SetActive(true);
         PopulateScoreboard();
         scoreboardPanel.SetActive(true);
@@ -139,7 +144,7 @@ public class GameLogic : MonoBehaviour
 
     private void PopulateScoreboard()
     {
-        scoreboard = GetSortedScoreBoardEntries(scoreboard);
+        var scoreboard = ScoreBoardManager.Instance.scoreBoard;
         string content = "";
         int len = scoreboard.Count <= 10 ? scoreboard.Count : 11;
         for (int i = 1; i < len; i++)
@@ -149,5 +154,26 @@ public class GameLogic : MonoBehaviour
         }
 
         scoreboardList.text = content;
+    }
+
+    public void ShowKeyboard()
+    {
+        startSaveButton.SetActive(false);
+        nameInputField.SetActive(true);
+        keyboard.SetActive(true);
+        var kbm = keyboard.GetComponent<KeyboardManager>();
+        kbm.Reset();
+        kbm.EnterText = AddScoreBoardEntry;
+        var nif = nameInputField.GetComponent<TMP_InputField>();
+        kbm.UpdateDisplay = typedContent => nif.text = typedContent;
+    }
+
+    private void AddScoreBoardEntry(string name)
+    {
+        var entry = new ScoreBoardEntry(name, totalTime - timeRemaining);
+        ScoreBoardManager.Instance.AddScoreBoardEntry(entry);
+        keyboard.SetActive(false);
+        nameInputField.SetActive(false);
+        PopulateScoreboard();
     }
 }

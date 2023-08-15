@@ -24,5 +24,10 @@ namespace _3DUI.scripts
         {
             return this.Time.CompareTo(other.Time);
         }
+
+        public new string ToString()
+        {
+            return ID + ";" + Name + ";" + Time;
+        }
     }
 }
