@@ -19,4 +19,10 @@ public class StartParkourDetection : MonoBehaviour
             GameLogic.timerActive = true;
         }
     }
+    public void Reset()
+    {
+        GetComponent<MeshRenderer>().enabled = true;
+        GetComponent<BoxCollider>().enabled = true;
+        transform.Find("Text (TMP)").gameObject.SetActive(true);
+    }
 }

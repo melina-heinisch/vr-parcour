@@ -5,19 +5,33 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class GameLogic : MonoBehaviour
 {
+    public VRHostSystem VRHostSystem;
+    public GameObject rightHand;
+    public Rigidbody rigidbodyObj;
+
+    public GameObject startBarrier;
+    public GameObject endBarrier;
+
     public bool isGameRunning = true;
-    public float timeRemaining = 60;
+    public float totalTime = 60;
+    public float timeRemaining;
     public bool timerActive = false;
     public bool isGameOver = false;
     public bool isWin = false;
-    public TextMeshProUGUI timeText;
+    public TextMeshProUGUI timeTextGoal;
+    public GameObject resultPanel;
+    public TextMeshProUGUI timeTextResult;
+    public GameObject restartTimer;
+    private float restartTimerDuration = 10;
 
     private void Start()
     {
-        GetTimeInMinSec(timeRemaining);
+        timeRemaining = totalTime;
+        timeTextGoal.text = GetTimeInMinSec(timeRemaining);
     }
 
     // Update is called once per frame
@@ -36,7 +50,7 @@ public class GameLogic : MonoBehaviour
                 timerActive = false;
                 timeRemaining = 0;
             }
-            GetTimeInMinSec(timeRemaining);
+            timeTextGoal.text = GetTimeInMinSec(timeRemaining);
           }
 
           if (isGameOver)
@@ -51,19 +65,51 @@ public class GameLogic : MonoBehaviour
     {
         isGameRunning = false;
         Debug.Log("Game Over");
+        //TODO: Why is reset after falling not working?
+        StartCoroutine(RestartGame(2));
     }
 
     void GameWon()
     {
         isGameRunning = false;
         Debug.Log("Game Won");
+        string result = GetTimeInMinSec(totalTime - timeRemaining);
+        timeTextResult.text = result;
+        resultPanel.SetActive(true);
+        rightHand.GetComponent<XRInteractorLineVisual>().enabled = true;
+        VRHostSystem.getXROriginGameObject().GetComponent<HandSwinging>().enabled = false;
+        restartTimer.GetComponent<Timer>().StartTimer(restartTimerDuration);
+        StartCoroutine(RestartGame(restartTimerDuration));
+        
     }
 
-    void GetTimeInMinSec(float timeToDisplay)
+    string GetTimeInMinSec(float timeToDisplay)
     {
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+        float milliSeconds = (timeToDisplay % 1) * 1000;
         if(minutes >= 0 && seconds >= 0)
-            timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            return string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliSeconds);
+        else
+            return string.Format("{0:00}:{1:00}:{2:000}", 0, 0, milliSeconds);
+    }
+
+    IEnumerator RestartGame(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        resultPanel.SetActive(false);
+        rightHand.GetComponent<XRInteractorLineVisual>().enabled = false;
+        timeRemaining = totalTime;
+        timeTextGoal.text = GetTimeInMinSec(timeRemaining);
+        isWin = false;
+        isGameOver = false;
+        timerActive = false;
+        rigidbodyObj.velocity = Vector3.zero;
+        VRHostSystem.getXROriginGameObject().transform.position = new Vector3(0, 3f, 0);
+        VRHostSystem.getXROriginGameObject().transform.eulerAngles = new Vector3(0, 0, 0);
+        VRHostSystem.getXROriginGameObject().GetComponent<HandSwinging>().enabled = true;
+        startBarrier.GetComponent<StartParkourDetection>().Reset();
+        endBarrier.GetComponent<EndParkourDetection>().Reset();
+        isGameRunning = true;
     }
 }

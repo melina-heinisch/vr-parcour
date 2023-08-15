@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,5 +20,12 @@ public class EndParkourDetection : MonoBehaviour
             if (GameLogic.timeRemaining > 0)
                 GameLogic.isWin = true;
         }
+    }
+
+    public void Reset()
+    {
+        GetComponent<MeshRenderer>().enabled = true;
+        GetComponent<BoxCollider>().enabled = true;
+        transform.Find("Text (TMP)").gameObject.SetActive(true);
     }
 }
