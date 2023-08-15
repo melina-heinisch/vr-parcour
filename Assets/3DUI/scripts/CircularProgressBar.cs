@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class CircularProgressBar : MonoBehaviour
 {
+    // Made with help of the following video: https://youtu.be/2MSMmPWedyg
+    
     private bool isActive = false;
 
     private float indicatorTimer;

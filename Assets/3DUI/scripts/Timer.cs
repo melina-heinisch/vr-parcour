@@ -6,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Timer : MonoBehaviour
 {
+    // Made with help of the following video: https://youtu.be/2MSMmPWedyg
     public GameObject timer;
     public GameObject radialProgressBar;
     public bool timerIsActive;

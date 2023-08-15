@@ -99,6 +99,7 @@ public class GameLogic : MonoBehaviour
         
     }
 
+    // Made with help of following tutorial: https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/
     string GetTimeInMinSec(float timeToDisplay)
     {
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
