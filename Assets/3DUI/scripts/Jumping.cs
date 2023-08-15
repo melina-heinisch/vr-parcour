@@ -31,28 +31,21 @@ public class Jumping : MonoBehaviour
             {
                 if (!bButtonWasPressed && leftGripButton && rightGripButton)
                 {
-                    bButtonWasPressed = true;
-                    rigidbodyObj.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
-                    jumpCounter++;
-                    Debug.Log("Jumping! " + Time.deltaTime);
+                    if (jumpCounter < 2)
+                    {
+                       bButtonWasPressed = true;
+                       rigidbodyObj.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+                       jumpCounter++;
+                       Debug.Log("Jumping! " + Time.deltaTime); 
+                    }
+                    
                 }
                 if (!leftGripButton && !rightGripButton && bButtonWasPressed)
                 {
                     bButtonWasPressed = false;
                 }
             }
-        } 
-
-     /* For testing Jump at Home
-      if (Keyboard.current.spaceKey.wasPressedThisFrame)
-      {
-          if (jumpCounter < 2)
-          {
-              rigidbody.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
-              jumpCounter++;
-              Debug.Log("Jumping! " + Time.deltaTime);
-          }
-      } */
+        }
     }
     
     void OnCollisionEnter(Collision collision)
