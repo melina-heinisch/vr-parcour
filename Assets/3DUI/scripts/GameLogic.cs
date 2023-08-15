@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _3DUI.scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -27,11 +28,24 @@ public class GameLogic : MonoBehaviour
     public TextMeshProUGUI timeTextResult;
     public GameObject restartTimer;
     private float restartTimerDuration = 10;
+    public TextMeshProUGUI scoreboardList;
+    public GameObject scoreboardPanel;
+
+    
+    private List<ScoreBoardEntry> scoreboard = new ();
 
     private void Start()
     {
         timeRemaining = totalTime;
         timeTextGoal.text = GetTimeInMinSec(timeRemaining);
+
+        scoreboard.Add(new ScoreBoardEntry("Luise", 9.68f));
+        scoreboard.Add(new ScoreBoardEntry("Lars", 7.68f));
+        scoreboard.Add(new ScoreBoardEntry("Laura", 8.68f));
+        scoreboard.Add(new ScoreBoardEntry("Leon", 7.98f));
+        scoreboard.Add(new ScoreBoardEntry("Lea", 8.38f));
+        scoreboard = GetSortedScoreBoardEntries(scoreboard);
+
     }
 
     // Update is called once per frame
@@ -76,6 +90,8 @@ public class GameLogic : MonoBehaviour
         string result = GetTimeInMinSec(totalTime - timeRemaining);
         timeTextResult.text = result;
         resultPanel.SetActive(true);
+        PopulateScoreboard();
+        scoreboardPanel.SetActive(true);
         rightHand.GetComponent<XRInteractorLineVisual>().enabled = true;
         VRHostSystem.getXROriginGameObject().GetComponent<HandSwinging>().enabled = false;
         restartTimer.GetComponent<Timer>().StartTimer(restartTimerDuration);
@@ -98,6 +114,7 @@ public class GameLogic : MonoBehaviour
     {
         yield return new WaitForSeconds(wait);
         resultPanel.SetActive(false);
+        scoreboardPanel.SetActive(false);
         rightHand.GetComponent<XRInteractorLineVisual>().enabled = false;
         timeRemaining = totalTime;
         timeTextGoal.text = GetTimeInMinSec(timeRemaining);
@@ -111,5 +128,25 @@ public class GameLogic : MonoBehaviour
         startBarrier.GetComponent<StartParkourDetection>().Reset();
         endBarrier.GetComponent<EndParkourDetection>().Reset();
         isGameRunning = true;
+    }
+    
+    public List<ScoreBoardEntry> GetSortedScoreBoardEntries(List<ScoreBoardEntry> entries)
+    {
+        entries.Sort((s1,s2) => s1.CompareTo(s2));
+        return entries;
+    }
+
+    private void PopulateScoreboard()
+    {
+        scoreboard = GetSortedScoreBoardEntries(scoreboard);
+        string content = "";
+        int len = scoreboard.Count <= 10 ? scoreboard.Count : 11;
+        for (int i = 1; i < len; i++)
+        {
+            ScoreBoardEntry sb = scoreboard[i-1];
+            content += i + " - " + sb.Name + "\t \t" + GetTimeInMinSec(sb.Time) + "\n";
+        }
+
+        scoreboardList.text = content;
     }
 }
