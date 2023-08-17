@@ -35,11 +35,14 @@ public class GameLogic : MonoBehaviour
     public GameObject nameInputField;
     public GameObject restartingInfoText;
     private Coroutine restartCoroutine;
-    
+    private HandSwinging handSwinging;
+
     private void Start()
     {
         timeRemaining = totalTime;
         timeTextGoal.text = GetTimeInMinSec(timeRemaining);
+
+        handSwinging = VRHostSystem.getXROriginGameObject().GetComponent<HandSwinging>();
 
         //Add dummy data
         var sbm = ScoreBoardManager.Instance;
@@ -136,6 +139,7 @@ public class GameLogic : MonoBehaviour
         VRHostSystem.getXROriginGameObject().GetComponent<HandSwinging>().enabled = true;
         startBarrier.GetComponent<StartParkourDetection>().Reset();
         endBarrier.GetComponent<EndParkourDetection>().Reset();
+        handSwinging.timeSinceGameStart = 0.0f;
         isGameRunning = true;
     }
     

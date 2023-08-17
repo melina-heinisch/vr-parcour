@@ -25,6 +25,8 @@ public class HandSwinging : MonoBehaviour
     public float speed = 50; 
     private float handSpeed;
     // Start is called before the first frame update
+
+    public float timeSinceGameStart = 0.0f;
     void Start()
     {
         //Set original Previous frame positions at start up
@@ -45,9 +47,6 @@ public class HandSwinging : MonoBehaviour
         if ((yRotationLeft > 320 || yRotationRight > 320) && (yRotationLeft < 40 || yRotationRight < 40))
             yRotation = 0;
 
-        Debug.Log("Right: " + yRotationRight);
-        Debug.Log("Left: " + yRotationLeft);
-        Debug.Log(yRotation);
         forwardDirection.transform.eulerAngles = new Vector3(0, yRotation, 0);
 
         //Get current positions of hands
@@ -62,8 +61,8 @@ public class HandSwinging : MonoBehaviour
         //Add them up to get the hand speed from the user
         handSpeed = ((leftHandDistanceMoved) +
                      (rightHandDistanceMoved)) * 2f;
-        
-        //speed = highSpeedModeAccelerationCurve.Evaluate(Time.realtimeSinceStartup);
+        timeSinceGameStart += Time.deltaTime;
+        speed = highSpeedModeAccelerationCurve.Evaluate(timeSinceGameStart);
 
         if (Time.timeSinceLevelLoad > 1f)
             transform.position += forwardDirection.transform.forward * (handSpeed * speed * Time.deltaTime);

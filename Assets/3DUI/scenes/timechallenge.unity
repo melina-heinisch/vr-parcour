@@ -19303,8 +19303,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 15.006443
-      value: 49.987
+      time: 9.792591
+      value: 50.03432
       inSlope: -0.0029357946
       outSlope: -0.0029357946
       tangentMode: 0
@@ -19324,6 +19324,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   speed: 50
+  timeSinceGameStart: 0
 --- !u!54 &841132393
 Rigidbody:
   m_ObjectHideFlags: 0
