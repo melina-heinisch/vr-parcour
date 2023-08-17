@@ -36,7 +36,7 @@ namespace _3DUI.scripts
                 {
                     string[] tokens = line.Split(";");
                     //Check for correct token count: ID, name, time
-                    if (tokens.Length != 3)
+                    if (tokens.Length == 3)
                     {
                         var id = tokens[0];
                         var name = tokens[1];
@@ -45,6 +45,7 @@ namespace _3DUI.scripts
                     }
                 }
                 scoreBoard.Sort();
+                Debug.Log(scoreBoard.Count);
             }
             else
             {
