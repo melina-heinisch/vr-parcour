@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.450449, g: 0.50044936, b: 0.5751933, a: 1}
+  m_IndirectSpecularColor: {r: 0.45044917, g: 0.5004496, b: 0.575194, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3456,7 +3456,7 @@ MonoBehaviour:
   startBarrier: {fileID: 980945237}
   endBarrier: {fileID: 381218833}
   isGameRunning: 1
-  totalTime: 20
+  totalTime: 60
   timeRemaining: 20
   timerActive: 0
   isGameOver: 0
@@ -5872,6 +5872,7 @@ GameObject:
   - component: {fileID: 182707818}
   - component: {fileID: 182707817}
   - component: {fileID: 182707816}
+  - component: {fileID: 182707820}
   m_Layer: 5
   m_Name: ResultPanel
   m_TagString: Untagged
@@ -5961,6 +5962,25 @@ RectTransform:
   m_AnchoredPosition: {x: 1.24, y: 7.41}
   m_SizeDelta: {x: 70, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &182707820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182707815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1001 &186566039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27995,7 +28015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8969281d4c249019ff555701c4f202b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyboardManager: {fileID: 0}
+  keyboardManager: {fileID: 1341201936}
   functionCode: enter
 --- !u!114 &1266294226
 MonoBehaviour:
@@ -29627,6 +29647,7 @@ GameObject:
   - component: {fileID: 1341201938}
   - component: {fileID: 1341201937}
   - component: {fileID: 1341201936}
+  - component: {fileID: 1341201941}
   m_Layer: 5
   m_Name: Keyboard
   m_TagString: Untagged
@@ -29728,6 +29749,25 @@ RectTransform:
   m_AnchoredPosition: {x: 1.24, y: 2.8}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1341201941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341201935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &1343093875
 GameObject:
   m_ObjectHideFlags: 0
@@ -40903,7 +40943,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1843383016
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44539,7 +44579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.5568628, b: 0.82745105, a: 1}
+  m_Color: {r: 0.044025064, g: 0.6843478, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

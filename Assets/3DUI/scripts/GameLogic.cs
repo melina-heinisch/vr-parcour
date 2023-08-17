@@ -166,6 +166,7 @@ public class GameLogic : MonoBehaviour
         kbm.EnterText = AddScoreBoardEntry;
         var nif = nameInputField.GetComponent<TMP_InputField>();
         kbm.UpdateDisplay = typedContent => nif.text = typedContent;
+        Debug.Log("Fertig");
     }
 
     private void AddScoreBoardEntry(string name)
