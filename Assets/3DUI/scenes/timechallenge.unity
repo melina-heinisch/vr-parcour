@@ -19219,7 +19219,7 @@ GameObject:
   - component: {fileID: 841132391}
   - component: {fileID: 841132394}
   - component: {fileID: 841132393}
-  - component: {fileID: 841132392}
+  - component: {fileID: 841132395}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: VRUserBodyPart
@@ -19277,20 +19277,40 @@ MonoBehaviour:
   leftHand: {fileID: 30328058}
   rightHand: {fileID: 1860304530}
   forwardDirection: {fileID: 1962198475}
+  highSpeedModeAccelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.846792
+      value: 29.98404
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 15.006443
+      value: 49.987
+      inSlope: -0.0029357946
+      outSlope: -0.0029357946
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.65042746
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 66.705925
+      value: 50.04757
+      inSlope: -Infinity
+      outSlope: -Infinity
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   speed: 50
---- !u!65 &841132392
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841132388}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.6, y: 2, z: 0.001}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &841132393
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19322,6 +19342,20 @@ MonoBehaviour:
   VRHostSystem: {fileID: 39433392}
   rigidbodyObj: {fileID: 841132393}
   jumpforce: 5
+--- !u!136 &841132395
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841132388}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.1
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &842162379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28974,7 +29008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1300930258
 RectTransform:
   m_ObjectHideFlags: 0
