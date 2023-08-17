@@ -12,7 +12,7 @@ namespace _3DUI.scripts
         private KeyManager[] keys;
         private string typedContent;
 
-        private void Start()
+        private void Awake()
         {
             keys = GetComponentsInChildren<KeyManager>();
         }
@@ -36,6 +36,9 @@ namespace _3DUI.scripts
                     break;
                 case "enter":
                     Enter();
+                    break;
+                case "space":
+                    EnterCharacter(" ");
                     break;
                 default:
                     typedContent += character;

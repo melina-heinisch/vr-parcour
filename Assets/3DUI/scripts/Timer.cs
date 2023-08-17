@@ -11,13 +11,20 @@ public class Timer : MonoBehaviour
     public GameObject radialProgressBar;
     public bool timerIsActive;
 
+    private Coroutine timerCoroutine;
+    
     public void StartTimer(float duration)
     {
         timerIsActive = true;
         timer.SetActive(true);
         radialProgressBar.GetComponent<CircularProgressBar>().ActivateCountdown(duration);
+        timerCoroutine = StartCoroutine(EndTimer(duration));
+    }
 
-        StartCoroutine(EndTimer(duration));
+    public void StopTimer()
+    {
+        if(timerCoroutine != null)
+            StopCoroutine(timerCoroutine);
     }
 
     IEnumerator EndTimer(float delay)

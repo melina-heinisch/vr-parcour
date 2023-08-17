@@ -3470,6 +3470,7 @@ MonoBehaviour:
   keyboard: {fileID: 1341201935}
   startSaveButton: {fileID: 681841527}
   nameInputField: {fileID: 1550220209}
+  restartingInfoText: {fileID: 607247040}
 --- !u!4 &131173214
 Transform:
   m_ObjectHideFlags: 0
@@ -15944,6 +15945,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: GameLogic, Assembly-CSharp
         m_MethodName: ShowKeyboard
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 607247040}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -40943,7 +40956,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1843383016
 RectTransform:
   m_ObjectHideFlags: 0
@@ -46584,7 +46597,7 @@ GameObject:
   - component: {fileID: 2104913116}
   - component: {fileID: 2104913115}
   - component: {fileID: 2104913114}
-  - component: {fileID: 2104913113}
+  - component: {fileID: 2104913117}
   m_Layer: 5
   m_Name: space
   m_TagString: Untagged
@@ -46613,23 +46626,6 @@ RectTransform:
   m_AnchoredPosition: {x: -8, y: 0}
   m_SizeDelta: {x: 61, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2104913113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104913111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca5509d57a174f1783fa3bfa0a86c952, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isShifted: 0
-  keyboardManager: {fileID: 1341201936}
-  text: {fileID: 976227578}
-  lowerCaseChar: ' '
-  upperCaseChar: ' '
 --- !u!114 &2104913114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46712,6 +46708,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104913111}
   m_CullTransparentMesh: 1
+--- !u!114 &2104913117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104913111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8969281d4c249019ff555701c4f202b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyboardManager: {fileID: 1341201936}
+  functionCode: space
 --- !u!1001 &2105254256
 PrefabInstance:
   m_ObjectHideFlags: 0

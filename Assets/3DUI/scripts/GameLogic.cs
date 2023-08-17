@@ -33,8 +33,9 @@ public class GameLogic : MonoBehaviour
     public GameObject keyboard;
     public GameObject startSaveButton;
     public GameObject nameInputField;
+    public GameObject restartingInfoText;
+    private Coroutine restartCoroutine;
     
-
     private void Start()
     {
         timeRemaining = totalTime;
@@ -50,6 +51,8 @@ public class GameLogic : MonoBehaviour
             sbm.AddScoreBoardEntry(new ScoreBoardEntry("Leon", 7.98f));
             sbm.AddScoreBoardEntry(new ScoreBoardEntry("Lea", 8.38f));
         }
+        PopulateScoreboard();
+        scoreboardPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -100,7 +103,7 @@ public class GameLogic : MonoBehaviour
         rightHand.GetComponent<XRInteractorLineVisual>().enabled = true;
         VRHostSystem.getXROriginGameObject().GetComponent<HandSwinging>().enabled = false;
         restartTimer.GetComponent<Timer>().StartTimer(restartTimerDuration);
-        StartCoroutine(RestartGame(restartTimerDuration));
+        restartCoroutine = StartCoroutine(RestartGame(restartTimerDuration));
         
     }
 
@@ -158,17 +161,33 @@ public class GameLogic : MonoBehaviour
 
     public void ShowKeyboard()
     {
+        if (restartCoroutine != null)
+        {
+            StopCoroutine(restartCoroutine);
+            Debug.Log("stopped restart");
+        }
+        restartTimer.GetComponent<Timer>().StopTimer();
+        restartTimer.SetActive(false);
         startSaveButton.SetActive(false);
         nameInputField.SetActive(true);
         keyboard.SetActive(true);
         var kbm = keyboard.GetComponent<KeyboardManager>();
         kbm.Reset();
-        kbm.EnterText = AddScoreBoardEntry;
+        kbm.EnterText = AddScoreBoardEntryAndRestart;
         var nif = nameInputField.GetComponent<TMP_InputField>();
+        nif.text = "";
         kbm.UpdateDisplay = typedContent => nif.text = typedContent;
-        Debug.Log("Fertig");
     }
 
+    private void AddScoreBoardEntryAndRestart(string name)
+    {
+        restartingInfoText.SetActive(true);
+        restartTimer.SetActive(true);
+        AddScoreBoardEntry(name);
+        StartCoroutine(RestartGame(restartTimerDuration));
+        restartTimer.GetComponent<Timer>().StartTimer(restartTimerDuration);
+    }
+    
     private void AddScoreBoardEntry(string name)
     {
         var entry = new ScoreBoardEntry(name, totalTime - timeRemaining);
