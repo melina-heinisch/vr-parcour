@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace _3DUI.scripts
+namespace _3DUI.scripts.keyboard
 {
     public class KeyboardManager : MonoBehaviour
     {

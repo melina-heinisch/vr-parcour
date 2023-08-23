@@ -1,9 +1,8 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _3DUI.scripts
+namespace _3DUI.scripts.keyboard
 {
     public class KeyManager : MonoBehaviour
     {

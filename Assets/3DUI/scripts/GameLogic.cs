@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using _3DUI.scripts;
+using _3DUI.scripts.keyboard;
+using _3DUI.scripts.scoreboard;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class GameLogic : MonoBehaviour

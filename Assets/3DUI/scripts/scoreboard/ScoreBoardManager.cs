@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 
-namespace _3DUI.scripts
+namespace _3DUI.scripts.scoreboard
 {
     public class ScoreBoardManager : MonoBehaviour
     {

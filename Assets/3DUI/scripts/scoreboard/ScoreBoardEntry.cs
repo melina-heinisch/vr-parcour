@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace _3DUI.scripts
+namespace _3DUI.scripts.scoreboard
 {
     public class ScoreBoardEntry : IComparable<ScoreBoardEntry>
     {

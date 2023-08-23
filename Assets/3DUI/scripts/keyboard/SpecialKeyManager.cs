@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace _3DUI.scripts
+namespace _3DUI.scripts.keyboard
 {
     public class SpecialKeyManager : MonoBehaviour
     {
