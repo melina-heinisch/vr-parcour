@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.450449, g: 0.50044936, b: 0.5751933, a: 1}
+  m_IndirectSpecularColor: {r: 0.45044917, g: 0.5004496, b: 0.575194, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -41060,7 +41060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1843383016
 RectTransform:
   m_ObjectHideFlags: 0
@@ -47391,15 +47391,65 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1251483223}
+    - target: {fileID: 3773275083977244559, guid: 75b7671f6107b6543b6ce7cd9779dbb0,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5588118398329723240, guid: 75b7671f6107b6543b6ce7cd9779dbb0,
         type: 3}
       propertyPath: m_Name
       value: Fader
       objectReference: {fileID: 0}
+    - target: {fileID: 7475028803186274803, guid: 75b7671f6107b6543b6ce7cd9779dbb0,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7521691538187235623, guid: 75b7671f6107b6543b6ce7cd9779dbb0,
         type: 3}
       propertyPath: currentStatus
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661731924021449302, guid: 75b7671f6107b6543b6ce7cd9779dbb0,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661731924021449302, guid: 75b7671f6107b6543b6ce7cd9779dbb0,
+        type: 3}
+      propertyPath: m_fontSizeMin
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661731924021449302, guid: 75b7671f6107b6543b6ce7cd9779dbb0,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058261209690274809, guid: 75b7671f6107b6543b6ce7cd9779dbb0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058261209690274809, guid: 75b7671f6107b6543b6ce7cd9779dbb0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058261209690274809, guid: 75b7671f6107b6543b6ce7cd9779dbb0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058261209690274809, guid: 75b7671f6107b6543b6ce7cd9779dbb0,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058261209690274809, guid: 75b7671f6107b6543b6ce7cd9779dbb0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8452433289597446825, guid: 75b7671f6107b6543b6ce7cd9779dbb0,
         type: 3}

@@ -89,7 +89,7 @@ public class GameLogic : MonoBehaviour
         isGameRunning = false;
         Debug.Log("Game Over");
         //TODO: Why is reset after falling not working?
-        StartCoroutine(RestartGame(2));
+        StartCoroutine(RestartGame(1f, "Game Over - Restarting", 3f));
     }
 
     void GameWon()
@@ -121,9 +121,11 @@ public class GameLogic : MonoBehaviour
             return string.Format("{0:00}:{1:00}:{2:000}", 0, 0, milliSeconds);
     }
 
-    IEnumerator RestartGame(float wait)
+    IEnumerator RestartGame(float wait, string infoText = "", float blackTime = 2f)
     {
         yield return new WaitForSeconds(wait);
+        Fader.FadOut(infoText: infoText);
+        yield return new WaitForSeconds(blackTime);
         resultPanel.SetActive(false);
         scoreboardPanel.SetActive(false);
         rightHand.GetComponent<XRInteractorLineVisual>().enabled = false;
@@ -140,6 +142,7 @@ public class GameLogic : MonoBehaviour
         endBarrier.GetComponent<EndParkourDetection>().Reset();
         handSwinging.timeSinceGameStart = 0.0f;
         isGameRunning = true;
+        Fader.FadeIn();
     }
     
     public List<ScoreBoardEntry> GetSortedScoreBoardEntries(List<ScoreBoardEntry> entries)
