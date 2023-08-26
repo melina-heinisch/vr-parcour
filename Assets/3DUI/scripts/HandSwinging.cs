@@ -30,8 +30,8 @@ public class HandSwinging : MonoBehaviour
     void Start()
     {
         //Set original Previous frame positions at start up
-        positionPreviousFrameLeftHand = new Vector3(0, leftHand.transform.localPosition.y, leftHand.transform.localPosition.z);
-        positionPreviousFrameRightHand = new Vector3(0, rightHand.transform.localPosition.y, rightHand.transform.localPosition.z);
+        positionPreviousFrameLeftHand = new Vector3(0, leftHand.transform.localPosition.y, 0);
+        positionPreviousFrameRightHand = new Vector3(0, rightHand.transform.localPosition.y, 0);
         
     }
     
@@ -50,8 +50,8 @@ public class HandSwinging : MonoBehaviour
         forwardDirection.transform.eulerAngles = new Vector3(0, yRotation, 0);
 
         //Get current positions of hands
-        positionThisFrameLeftHand = new Vector3(0, leftHand.transform.localPosition.y, leftHand.transform.localPosition.z);
-        positionThisFrameRigthHand =  new Vector3(0, rightHand.transform.localPosition.y, rightHand.transform.localPosition.z);
+        positionThisFrameLeftHand = new Vector3(0, leftHand.transform.localPosition.y, 0);
+        positionThisFrameRigthHand =  new Vector3(0, rightHand.transform.localPosition.y, 0);
         
 
         //Get distance the hands have moved since the last frame
