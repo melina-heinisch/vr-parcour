@@ -36,7 +36,7 @@ public class Teleportation : MonoBehaviour
                 if (StateController.preTravelModeActivated)
                 {
                     preTravelObject.gameObject.transform.position = lastRayCastHit.point;
-                    RotatePreTravelObject();
+                    // RotatePreTravelObject();
                 }
 
                 MoveTrackingSpaceRootWithTeleportation();
