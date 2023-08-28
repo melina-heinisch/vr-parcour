@@ -36,10 +36,10 @@ public class Teleportation : MonoBehaviour
                 if (StateController.preTravelModeActivated)
                 {
                     preTravelObject.gameObject.transform.position = lastRayCastHit.point;
-                    RotatePreTravelObject();
+                    // RotatePreTravelObject();
                 }
 
-                MoveTrackingSpaceRootWithJumping();
+                MoveTrackingSpaceRootWithTeleportation();
             }
         }
     }
@@ -68,7 +68,7 @@ public class Teleportation : MonoBehaviour
     {
         Vector2 thumbstickAxisValue; //  where left (-1.0,0.0), right (1.0,0.0), up (0.0,1.0), down (0.0,-1.0)
 
-        if (VRHostSystem.GetLeftHandDevice().TryGetFeatureValue(CommonUsages.primary2DAxis, out thumbstickAxisValue))
+        if (VRHostSystem.GetRightHandDevice().TryGetFeatureValue(CommonUsages.primary2DAxis, out thumbstickAxisValue))
         {
             preTravelObject
                 .transform
@@ -76,21 +76,20 @@ public class Teleportation : MonoBehaviour
         }
     }
 
-    private void MoveTrackingSpaceRootWithJumping()
+    private void MoveTrackingSpaceRootWithTeleportation()
     {
-        if (VRHostSystem.GetLeftHandDevice().isValid)
+        if (VRHostSystem.GetRightHandDevice().isValid)
         {
-            if (VRHostSystem.GetLeftHandDevice().TryGetFeatureValue(CommonUsages.gripButton, out bool leftGripButton)
-                && VRHostSystem.GetLeftHandDevice().TryGetFeatureValue(CommonUsages.gripButton, out bool rightGripButton))
+            if (VRHostSystem.GetRightHandDevice().TryGetFeatureValue(CommonUsages.triggerButton, out bool rightTripperButton))
             {
-                if (!bButtonWasPressed && leftGripButton && rightGripButton && lastRayCastHit.collider != null)
+                if (!bButtonWasPressed && rightTripperButton && lastRayCastHit.collider != null)
                 {
                     bButtonWasPressed = true;
                     StateController.preTravelModeActivated = true;
                     preTravelObject.SetActive(true);
                     preTravelObject.transform.rotation = VRHostSystem.getXROriginGameObject().transform.rotation;
                 }
-                if (!leftGripButton && !rightGripButton && bButtonWasPressed)
+                if (!rightTripperButton && bButtonWasPressed)
                 {
                     bButtonWasPressed = false;
                     StateController.preTravelModeActivated = false;
