@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using _3DUI.scripts;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -87,12 +88,14 @@ public class Teleportation : MonoBehaviour
                 }
                 if (!rightTriggerButton && bButtonWasPressed)
                 {
+                    // Fader.FadeToBlack();
                     bButtonWasPressed = false;
                     StateController.preTravelModeActivated = false;
                     GenerateSound();
                     VRHostSystem.getXROriginGameObject().transform.position = lastRayCastHit.point;
                     Debug.Log("Teleportation! ");
                     preTravelObject.SetActive(false);
+                    // Fader.FadeToScene();
                 }
             }
         }

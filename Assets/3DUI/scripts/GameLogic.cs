@@ -124,7 +124,7 @@ public class GameLogic : MonoBehaviour
     IEnumerator RestartGame(float wait, string infoText = "", float blackTime = 2f)
     {
         yield return new WaitForSeconds(wait);
-        Fader.FadOut(infoText: infoText);
+        Fader.FadeToBlack(infoText: infoText);
         yield return new WaitForSeconds(blackTime);
         resultPanel.SetActive(false);
         scoreboardPanel.SetActive(false);
@@ -142,7 +142,7 @@ public class GameLogic : MonoBehaviour
         endBarrier.GetComponent<EndParkourDetection>().Reset();
         handSwinging.timeSinceGameStart = 0.0f;
         isGameRunning = true;
-        Fader.FadeIn();
+        Fader.FadeToScene();
     }
     
     public List<ScoreBoardEntry> GetSortedScoreBoardEntries(List<ScoreBoardEntry> entries)
