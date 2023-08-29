@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using _3DUI.scripts;
 using UnityEngine;
 using UnityEngine.XR;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class HelpMenuController : MonoBehaviour
 {
@@ -16,7 +13,7 @@ public class HelpMenuController : MonoBehaviour
     private Canvas canvas;
 
     private VRHostSystem VRHostSystem = null;
-
+    
     void Start()
     {
         findVRHostSystem();
@@ -94,6 +91,9 @@ public class HelpMenuController : MonoBehaviour
         if (menuPrefab != null)
         {
             menuInstanced = Instantiate(menuPrefab, Where.position, Quaternion.identity);
+            var slideManager = menuInstanced.GetComponent<SlideManager>();
+            if (slideManager)
+                slideManager.closeAction = Close;
         }
         else
         {
@@ -110,5 +110,5 @@ public class HelpMenuController : MonoBehaviour
             menuInstanced = null;
         }
     }
-
+    
 }
