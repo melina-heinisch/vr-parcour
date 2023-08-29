@@ -13,7 +13,7 @@ public class HandSwinging : MonoBehaviour
     public GameObject leftHand;
     public GameObject rightHand; 
     public GameObject forwardDirection;
-    public AnimationCurve highSpeedModeAccelerationCurve;
+    [FormerlySerializedAs("highSpeedModeAccelerationCurve")] public AnimationCurve accelerationCurve;
     
     //Vector3 positions
     private Vector3 positionPreviousFrameLeftHand;
@@ -62,7 +62,7 @@ public class HandSwinging : MonoBehaviour
         handSpeed = ((leftHandDistanceMoved) +
                      (rightHandDistanceMoved)) * 2f;
         timeSinceGameStart += Time.deltaTime;
-        speed = highSpeedModeAccelerationCurve.Evaluate(timeSinceGameStart);
+        speed = accelerationCurve.Evaluate(timeSinceGameStart);
 
         if (Time.timeSinceLevelLoad > 1f)
             transform.position += forwardDirection.transform.forward * (handSpeed * speed * Time.deltaTime);
