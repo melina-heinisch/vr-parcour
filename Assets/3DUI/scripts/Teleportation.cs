@@ -13,9 +13,6 @@ public class Teleportation : MonoBehaviour
     private RaycastHit lastRayCastHit;
     private bool bButtonWasPressed = false;
 
-
-    public float angleInDegreePerSecond = 100;
-
     [SerializeField] private GameObject preTravelObject;
 
     //https://vionixstudio.com/2021/10/26/how-to-make-a-character-jump-in-unity/
@@ -35,8 +32,10 @@ public class Teleportation : MonoBehaviour
                 
                 if (StateController.preTravelModeActivated)
                 {
+                    // Debug.Log("last ray cast hit point: " + lastRayCastHit.point);
                     preTravelObject.gameObject.transform.position = lastRayCastHit.point;
-                    // RotatePreTravelObject();
+                    // Debug.Log("pre travel position: " + preTravelObject.gameObject.transform.position);
+                    RotatePreTravelObject();
                 }
 
                 MoveTrackingSpaceRootWithTeleportation();
@@ -66,35 +65,31 @@ public class Teleportation : MonoBehaviour
 
     private void RotatePreTravelObject()
     {
-        Vector2 thumbstickAxisValue; //  where left (-1.0,0.0), right (1.0,0.0), up (0.0,1.0), down (0.0,-1.0)
-
-        if (VRHostSystem.GetRightHandDevice().TryGetFeatureValue(CommonUsages.primary2DAxis, out thumbstickAxisValue))
-        {
-            preTravelObject
-                .transform
-                .Rotate(Vector3.up, angleInDegreePerSecond * Time.deltaTime * thumbstickAxisValue.x);
-        }
+        // adapted from ChatGPT
+        float hmdY = VRHostSystem.GetCamera().transform.rotation.eulerAngles.y;
+        Vector3 rotationPreTravel = preTravelObject.transform.rotation.eulerAngles;
+        rotationPreTravel.y = hmdY;
+        preTravelObject.transform.rotation = Quaternion.Euler(rotationPreTravel);
     }
 
     private void MoveTrackingSpaceRootWithTeleportation()
     {
         if (VRHostSystem.GetRightHandDevice().isValid)
         {
-            if (VRHostSystem.GetRightHandDevice().TryGetFeatureValue(CommonUsages.triggerButton, out bool rightTripperButton))
+            if (VRHostSystem.GetRightHandDevice().TryGetFeatureValue(CommonUsages.triggerButton, out bool rightTriggerButton))
             {
-                if (!bButtonWasPressed && rightTripperButton && lastRayCastHit.collider != null)
+                if (!bButtonWasPressed && rightTriggerButton && lastRayCastHit.collider != null)
                 {
                     bButtonWasPressed = true;
                     StateController.preTravelModeActivated = true;
                     preTravelObject.SetActive(true);
                     preTravelObject.transform.rotation = VRHostSystem.getXROriginGameObject().transform.rotation;
                 }
-                if (!rightTripperButton && bButtonWasPressed)
+                if (!rightTriggerButton && bButtonWasPressed)
                 {
                     bButtonWasPressed = false;
                     StateController.preTravelModeActivated = false;
                     VRHostSystem.getXROriginGameObject().transform.position = lastRayCastHit.point;
-                    VRHostSystem.getXROriginGameObject().transform.rotation = preTravelObject.transform.rotation;
                     Debug.Log("Jumping! " + Time.deltaTime);
                     preTravelObject.SetActive(false);
                 }
