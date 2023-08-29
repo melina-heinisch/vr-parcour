@@ -43,8 +43,8 @@ public class RayPicking : MonoBehaviour
                     OutlineObjectCollidingWithRay();
                 }
                 AttachOrDetachTargetedObject();
-                MoveTargetedObjectAlongRay();
-                RotateTargetedObjectOnLocalUpAxis();
+                // MoveTargetedObjectAlongRay();
+                // RotateTargetedObjectOnLocalUpAxis();
             }
         }
     }
@@ -170,41 +170,41 @@ public class RayPicking : MonoBehaviour
         }
     }
 
-    private void MoveTargetedObjectAlongRay()
-    {
-        if (VRHostSystem.GetRightHandDevice().isValid) // still connected?
-        {
-            if (VRHostSystem.GetRightHandDevice().TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 thumbstickAxis))
-            {
-                if (objectPickedUP != null) // already picked up an object?
-                {
-                    if (thumbstickAxis.y > thumbstickDeadZone || thumbstickAxis.y < -thumbstickDeadZone)
-                    {
-                        objectPickedUP.transform.position += transform.TransformDirection(Vector3.forward) * translationIncrement * thumbstickAxis.y;
-                        Debug.Log("Move object along ray: " + objectPickedUP + " axis: " + thumbstickAxis);
-                    }
-                }
-            }
-        }
-    }
-
-    private void RotateTargetedObjectOnLocalUpAxis()
-    {
-        if (VRHostSystem.GetRightHandDevice().isValid) // still connected?
-        {
-            if (VRHostSystem.GetRightHandDevice().TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 thumbstickAxis))
-            {
-                if (objectPickedUP != null) // already pick up an object?
-                {
-                    if (thumbstickAxis.x > thumbstickDeadZone || thumbstickAxis.x < -thumbstickDeadZone)
-                    {
-                        objectPickedUP.transform.Rotate(Vector3.up, rotationIncrement * thumbstickAxis.x, Space.Self);
-                    }
-                    Debug.Log("Rotate Object: " + objectPickedUP + "axis " + thumbstickAxis);
-                }
-            }
-        }
-    }
+    // private void MoveTargetedObjectAlongRay()
+    // {
+    //     if (VRHostSystem.GetRightHandDevice().isValid) // still connected?
+    //     {
+    //         if (VRHostSystem.GetRightHandDevice().TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 thumbstickAxis))
+    //         {
+    //             if (objectPickedUP != null) // already picked up an object?
+    //             {
+    //                 if (thumbstickAxis.y > thumbstickDeadZone || thumbstickAxis.y < -thumbstickDeadZone)
+    //                 {
+    //                     objectPickedUP.transform.position += transform.TransformDirection(Vector3.forward) * translationIncrement * thumbstickAxis.y;
+    //                     Debug.Log("Move object along ray: " + objectPickedUP + " axis: " + thumbstickAxis);
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+    //
+    // private void RotateTargetedObjectOnLocalUpAxis()
+    // {
+    //     if (VRHostSystem.GetRightHandDevice().isValid) // still connected?
+    //     {
+    //         if (VRHostSystem.GetRightHandDevice().TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 thumbstickAxis))
+    //         {
+    //             if (objectPickedUP != null) // already pick up an object?
+    //             {
+    //                 if (thumbstickAxis.x > thumbstickDeadZone || thumbstickAxis.x < -thumbstickDeadZone)
+    //                 {
+    //                     objectPickedUP.transform.Rotate(Vector3.up, rotationIncrement * thumbstickAxis.x, Space.Self);
+    //                 }
+    //                 Debug.Log("Rotate Object: " + objectPickedUP + "axis " + thumbstickAxis);
+    //             }
+    //         }
+    //     }
+    // }
 
     private void GenerateVibrations()
     {
