@@ -3462,11 +3462,11 @@ MonoBehaviour:
   isGameOver: 0
   isWin: 0
   timeTextGoal: {fileID: 1936543647}
-  resultPanel: {fileID: 1300930257}
+  resultUi: {fileID: 182707815}
   timeTextResult: {fileID: 815727964}
   restartTimer: {fileID: 1343093875}
   scoreboardList: {fileID: 308002027}
-  scoreboardPanel: {fileID: 1843383015}
+  scoreboard: {fileID: 1158763371}
   keyboard: {fileID: 1341201935}
   startSaveButton: {fileID: 681841527}
   nameInputField: {fileID: 1550220209}
@@ -5948,7 +5948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &182707816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10661,7 +10661,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7319b4d530c0f541b9fb27b39861975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI: {fileID: 909875725}
   GameLogic: {fileID: 131173213}
+  VRHostSystem: {fileID: 39433392}
 --- !u!1001 &382774673
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20713,15 +20715,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909875725}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.134898, z: 0.872}
+  m_LocalPosition: {x: 0, y: 7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 182707819}
   - {fileID: 1158763375}
   - {fileID: 1341201940}
-  m_Father: {fileID: 1251483220}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &911805128
 PrefabInstance:
@@ -26139,7 +26141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1158763372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27744,7 +27746,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3672152948486037332}
-  - {fileID: 909875726}
   m_Father: {fileID: 2145751207}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29126,7 +29127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1300930258
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41095,7 +41096,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1843383016
 RectTransform:
   m_ObjectHideFlags: 0

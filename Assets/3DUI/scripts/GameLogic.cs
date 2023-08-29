@@ -23,12 +23,12 @@ public class GameLogic : MonoBehaviour
     public bool isGameOver = false;
     public bool isWin = false;
     public TextMeshProUGUI timeTextGoal;
-    public GameObject resultPanel;
+    public GameObject resultUi;
     public TextMeshProUGUI timeTextResult;
     public GameObject restartTimer;
     private float restartTimerDuration = 10;
     public TextMeshProUGUI scoreboardList;
-    public GameObject scoreboardPanel;
+    public GameObject scoreboard;
     public GameObject keyboard;
     public GameObject startSaveButton;
     public GameObject nameInputField;
@@ -54,7 +54,7 @@ public class GameLogic : MonoBehaviour
             sbm.AddScoreBoardEntry(new ScoreBoardEntry("Lea", 8.38f));
         }
         PopulateScoreboard();
-        scoreboardPanel.SetActive(false);
+        scoreboard.SetActive(false);
     }
 
     // Update is called once per frame
@@ -99,9 +99,9 @@ public class GameLogic : MonoBehaviour
         string result = GetTimeInMinSec(totalTime - timeRemaining);
         timeTextResult.text = result;
         startSaveButton.SetActive(true);
-        resultPanel.SetActive(true);
+        resultUi.SetActive(true);
         PopulateScoreboard();
-        scoreboardPanel.SetActive(true);
+        scoreboard.SetActive(true);
         rightHand.GetComponent<XRInteractorLineVisual>().enabled = true;
         VRHostSystem.getXROriginGameObject().GetComponent<HandSwinging>().enabled = false;
         restartTimer.GetComponent<Timer>().StartTimer(restartTimerDuration);
@@ -126,8 +126,8 @@ public class GameLogic : MonoBehaviour
         yield return new WaitForSeconds(wait);
         Fader.FadeToBlack(infoText: infoText);
         yield return new WaitForSeconds(blackTime);
-        resultPanel.SetActive(false);
-        scoreboardPanel.SetActive(false);
+        resultUi.SetActive(false);
+        scoreboard.SetActive(false);
         rightHand.GetComponent<XRInteractorLineVisual>().enabled = false;
         timeRemaining = totalTime;
         timeTextGoal.text = GetTimeInMinSec(timeRemaining);
