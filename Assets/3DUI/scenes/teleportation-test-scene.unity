@@ -1995,7 +1995,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 116256996}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TravelInformation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24362,6 +24362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VRHostSystem: {fileID: 39433392}
   RayCollisionLayer: Default
+  rayInteractor: {fileID: 1860304546}
   preTravelObject: {fileID: 659131856}
 --- !u!114 &1860304546
 MonoBehaviour:
@@ -24459,7 +24460,7 @@ MonoBehaviour:
   m_SphereCastRadius: 0.1
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 307
   m_RaycastTriggerInteraction: 1
   m_HitClosestOnly: 0
   m_HoverToSelect: 0

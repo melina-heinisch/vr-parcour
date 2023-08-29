@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using _3DUI.scripts;
 using UnityEngine;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Teleportation : MonoBehaviour
 {
     [Tooltip("You need to manually add reference to the VRHostSystem GameObject")]
     public VRHostSystem VRHostSystem;
     public string RayCollisionLayer = "Default";
-
+    public XRRayInteractor rayInteractor;
     private GameObject handControllerGameObject;
     private RaycastHit lastRayCastHit;
     private bool bButtonWasPressed = false;
@@ -50,6 +51,7 @@ public class Teleportation : MonoBehaviour
     }
     private void getPointCollidingWithRayCasting()
     {
+        /*
         // see raycast example from https://docs.unity3d.com/ScriptReference/Physics.Raycast.html
         if (Physics.Raycast(transform.position,
             transform.TransformDirection(Vector3.forward),
@@ -61,7 +63,8 @@ public class Teleportation : MonoBehaviour
             // Debug.Log("Ray collided with:  " + hit.collider.gameObject + " collision point: " + hit.point);
             Debug.DrawLine(hit.point, (hit.point + hit.normal * 2));
             lastRayCastHit = hit;
-        }
+        }*/
+        rayInteractor.TryGetCurrent3DRaycastHit(out lastRayCastHit);
     }
 
     private void RotatePreTravelObject()
