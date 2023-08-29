@@ -89,11 +89,25 @@ public class Teleportation : MonoBehaviour
                 {
                     bButtonWasPressed = false;
                     StateController.preTravelModeActivated = false;
+                    GenerateSound();
                     VRHostSystem.getXROriginGameObject().transform.position = lastRayCastHit.point;
-                    Debug.Log("Jumping! " + Time.deltaTime);
+                    Debug.Log("Teleportation! ");
                     preTravelObject.SetActive(false);
                 }
             }
+        }
+    }
+
+    private void GenerateSound()
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
+        else
+        {
+            Debug.Log("No Audio Source Found!");
         }
     }
 }
