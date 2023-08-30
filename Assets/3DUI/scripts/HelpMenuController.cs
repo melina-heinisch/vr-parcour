@@ -62,6 +62,18 @@ public class HelpMenuController : MonoBehaviour
         }
     }
 
+    public void EditorOpenOrCloseHelpMenu()
+    {
+        if (menuInstanced == null)
+        {
+            Open(transform);
+        }
+        else
+        {
+            Close();
+        }
+    }
+
 
     public void Open(Transform Where)
     {
