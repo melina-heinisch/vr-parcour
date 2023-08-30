@@ -51,7 +51,7 @@ public class HelpMenuController : MonoBehaviour
                     bButtonWasPressed = false;
                     if (menuInstanced == null && VRHostSystem.GetCamera() != null)
                     {
-                        Open(gameObject.transform); // actually doent matter where as Canvas is render in camera view, here just to let students modif the position later
+                        Open(gameObject.transform); // actually doesnt matter where as Canvas is render in camera view, here just to let students modify the position later
                     }
                     else
                     {
@@ -77,8 +77,9 @@ public class HelpMenuController : MonoBehaviour
 
     public void Open(Transform Where)
     {
-        CreateMenuFromPrebab(Where);
+        CreateMenuFromPrefab(Where);
         AttachCameraToMenuCanvasAndDisplayMenu();
+        StateController.isHelpMenuOpened = true;
     }
 
     private void AttachCameraToMenuCanvasAndDisplayMenu()
@@ -98,7 +99,7 @@ public class HelpMenuController : MonoBehaviour
         }
     }
 
-    private void CreateMenuFromPrebab(Transform Where)
+    private void CreateMenuFromPrefab(Transform Where)
     {
         if (menuPrefab != null)
         {
@@ -120,6 +121,7 @@ public class HelpMenuController : MonoBehaviour
             menuInstanced.SetActive(false); // just to make sure
             Destroy(menuInstanced);
             menuInstanced = null;
+            StateController.isHelpMenuOpened = false;
         }
     }
     

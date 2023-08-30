@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR;
 
 namespace _3DUI.scripts
 {
@@ -15,6 +16,9 @@ namespace _3DUI.scripts
         private int currentSlide = 0;
         [SerializeField] private List<Slide> slides = new ();
 
+        private VRHostSystem VRHostSystem = null;
+        private bool thumbStickIsLeft, thumbStickIsRight;
+        
         [Serializable] public struct Slide
         {
             public string Title;
@@ -23,8 +27,49 @@ namespace _3DUI.scripts
 
         public void Start()
         {
+            VRHostSystem = GameObject.FindGameObjectWithTag("VRHostSystemDevices").GetComponent<VRHostSystem>();
+            
             currentSlide = 0;
             ApplySlide();
+        }
+
+        public void Update()
+        {
+            if (VRHostSystem == null)
+            {
+                VRHostSystem = GameObject.FindGameObjectWithTag("VRHostSystemDevices").GetComponent<VRHostSystem>();
+            }
+            else
+            {
+                if (VRHostSystem.AreAllDevicesFound())
+                {
+                    if (VRHostSystem.GetLeftHandDevice().isValid)
+                    {
+                        if (VRHostSystem.GetLeftHandDevice()
+                            .TryGetFeatureValue(CommonUsages.primary2DAxis, out var thumbstickAxisValue))
+                        {
+                            var x = thumbstickAxisValue.x;
+                            if (x <= -.5f)
+                            {
+                                if (thumbStickIsLeft) return;
+                                thumbStickIsLeft = true;
+                                PreviousSlide();
+                            }
+                            else if (x >= .5f)
+                            {
+                                if (thumbStickIsRight) return;
+                                thumbStickIsRight = true;
+                                NextSlide();
+                            }
+                            else
+                            {
+                                thumbStickIsLeft = false;
+                                thumbStickIsRight = false;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         public void Close()
