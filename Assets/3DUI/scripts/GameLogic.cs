@@ -190,7 +190,7 @@ public class GameLogic : MonoBehaviour
         restartingInfoText.SetActive(true);
         restartTimer.SetActive(true);
         AddScoreBoardEntry(name);
-        StartCoroutine(RestartGame(restartTimerDuration));
+        restartCoroutine = StartCoroutine(RestartGame(restartTimerDuration));
         restartTimer.GetComponent<Timer>().StartTimer(restartTimerDuration);
     }
     
