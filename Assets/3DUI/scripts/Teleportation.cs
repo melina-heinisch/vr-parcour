@@ -91,19 +91,25 @@ public class Teleportation : MonoBehaviour
                 }
                 if (!rightTriggerButton && bButtonWasPressed)
                 {
-                    // Fader.FadeToBlack();
-                    bButtonWasPressed = false;
-                    StateController.preTravelModeActivated = false;
-                    GenerateSound();
-                    VRHostSystem.getXROriginGameObject().transform.position = lastRayCastHit.point;
-                    Debug.Log("Teleportation! ");
-                    preTravelObject.SetActive(false);
-                    // Fader.FadeToScene();
+                    StartCoroutine(ActivateFader());
                 }
             }
         }
     }
 
+    IEnumerator ActivateFader()
+    {
+        Fader.FadeToBlack(10f);
+        GenerateSound();
+        bButtonWasPressed = false;
+        StateController.preTravelModeActivated = false;
+        VRHostSystem.getXROriginGameObject().transform.position = lastRayCastHit.point;
+        Debug.Log("Teleportation! ");
+        preTravelObject.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        Fader.FadeToScene(10f);
+    }
+    
     private void GenerateSound()
     {
         AudioSource audioSource = GetComponent<AudioSource>();
