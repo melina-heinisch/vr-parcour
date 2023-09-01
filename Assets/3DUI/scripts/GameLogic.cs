@@ -23,6 +23,8 @@ public class GameLogic : MonoBehaviour
     public bool isGameOver = false;
     public bool isWin = false;
     public TextMeshProUGUI timeTextGoal;
+    public TextMeshProUGUI timeTextScore1;
+    public TextMeshProUGUI timeTextScore2;
     public GameObject resultUi;
     public TextMeshProUGUI timeTextResult;
     public GameObject restartTimer;
@@ -39,7 +41,8 @@ public class GameLogic : MonoBehaviour
     private void Start()
     {
         timeRemaining = totalTime;
-        timeTextGoal.text = GetTimeInMinSec(timeRemaining);
+        string time = GetTimeInMinSec(timeRemaining);
+        timeTextGoal.text = timeTextScore1.text = timeTextScore2.text = time;
 
         handSwinging = VRHostSystem.getXROriginGameObject().GetComponent<HandSwinging>();
 
@@ -73,7 +76,8 @@ public class GameLogic : MonoBehaviour
                 timerActive = false;
                 timeRemaining = 0;
             }
-            timeTextGoal.text = GetTimeInMinSec(timeRemaining);
+            string time = GetTimeInMinSec(timeRemaining);
+            timeTextGoal.text = timeTextScore1.text = timeTextScore2.text = time;
           }
 
           if (isGameOver)
@@ -130,7 +134,8 @@ public class GameLogic : MonoBehaviour
         scoreboard.SetActive(false);
         rightHand.GetComponent<XRInteractorLineVisual>().enabled = false;
         timeRemaining = totalTime;
-        timeTextGoal.text = GetTimeInMinSec(timeRemaining);
+        string time = GetTimeInMinSec(timeRemaining);
+        timeTextGoal.text = timeTextScore1.text = timeTextScore2.text = time;
         isWin = false;
         isGameOver = false;
         timerActive = false;

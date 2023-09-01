@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,10 +10,18 @@ public class Rotation : MonoBehaviour
     public VRHostSystem VRHostSystem;
 
     public float angleInDegreePerSecond = 25;
-    
+
     private bool bModeSnapRotation;
     private bool isStickWasPressed;
-    private bool snapRotationExecuted = false;
+    private bool snapRotationExecuted;
+
+    private void Start()
+    {
+        bModeSnapRotation = true;
+        isStickWasPressed = false;
+        snapRotationExecuted = false;
+    }
+
     void Update()
     {
         if (VRHostSystem == null) 
