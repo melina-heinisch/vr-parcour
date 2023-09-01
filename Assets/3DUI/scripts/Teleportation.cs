@@ -14,8 +14,11 @@ public class Teleportation : MonoBehaviour
     private GameObject handControllerGameObject;
     private RaycastHit lastRayCastHit;
     private bool bButtonWasPressed = false;
+    private bool firstTeleport = false;
 
     [SerializeField] private GameObject preTravelObject;
+
+    private GameObject currentTeleportationGun;
 
     //https://vionixstudio.com/2021/10/26/how-to-make-a-character-jump-in-unity/
     void Start()
@@ -28,6 +31,11 @@ public class Teleportation : MonoBehaviour
         if (VRHostSystem == null) Debug.LogError("VRHostSystem variable was not defined via inspector!");
         else
         {
+            if (firstTeleport)
+            {
+                DropTeleportationGun();
+                firstTeleport = false;
+            }
             if (VRHostSystem.AreAllDevicesFound())
             {
                 getPointCollidingWithRayCasting();
@@ -40,7 +48,19 @@ public class Teleportation : MonoBehaviour
 
                 MoveTrackingSpaceRootWithTeleportation();
             }
+            
         }
+    }
+
+    private void DropTeleportationGun()
+    {
+        SelectExitEventArgs drop = new();
+        currentTeleportationGun.GetComponent<XRGrabInteractable>().selectExited.Invoke(drop);
+    }
+
+    public void SetTeleportationGun(GameObject teleportationGun)
+    {
+        currentTeleportationGun = teleportationGun;
     }
 
     private void getXRHandController()
@@ -91,6 +111,7 @@ public class Teleportation : MonoBehaviour
         VRHostSystem.getXROriginGameObject().transform.position = lastRayCastHit.point;
         Debug.Log("Teleportation! ");
         preTravelObject.SetActive(false);
+        firstTeleport = true;
         yield return new WaitForSeconds(0.5f);
         Fader.FadeToScene(10f);
     }
