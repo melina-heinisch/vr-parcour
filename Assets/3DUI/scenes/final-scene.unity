@@ -24012,6 +24012,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1894513379}
     m_Modifications:
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1860304546}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1860304545}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1860304542}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 659131856}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1860304546}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1860304545}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1860304542}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GenerateVibrations
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GenerateVibrations
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
     - target: {fileID: 2704939214254536566, guid: b11c856e20ad43e45ae7b37f5037356a,
         type: 3}
       propertyPath: m_RootOrder
@@ -41641,6 +41697,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 773395714}
     m_Modifications:
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1860304546}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1860304545}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1860304542}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 659131856}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1860304546}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1860304545}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1860304542}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GenerateVibrations
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GenerateVibrations
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
     - target: {fileID: 2704939214254536566, guid: b11c856e20ad43e45ae7b37f5037356a,
         type: 3}
       propertyPath: m_RootOrder
