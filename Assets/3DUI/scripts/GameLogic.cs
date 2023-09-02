@@ -15,6 +15,8 @@ public class GameLogic : MonoBehaviour
 
     public GameObject startBarrier;
     public GameObject endBarrier;
+    public AudioClip easterEgg;
+    public AudioClip gameOver;
 
     public bool isGameRunning = true;
     public float totalTime = 60;
@@ -146,6 +148,7 @@ public class GameLogic : MonoBehaviour
         VRHostSystem.getXROriginGameObject().GetComponent<HandSwinging>().enabled = true;
         startBarrier.GetComponent<StartParkourDetection>().Reset();
         endBarrier.GetComponent<EndParkourDetection>().Reset();
+        GetComponent<AudioSource>().clip = gameOver;
         handSwinging.timeSinceGameStart = 0.0f;
         isGameRunning = true;
         Fader.FadeToScene();
@@ -193,6 +196,11 @@ public class GameLogic : MonoBehaviour
 
     private void AddScoreBoardEntryAndRestart(string name)
     {
+        if (name == "meow" || name == "Meow")
+        {
+            GetComponent<AudioSource>().clip = easterEgg;
+            GetComponent<AudioSource>().Play();
+        }
         restartingInfoText.SetActive(true);
         restartTimer.SetActive(true);
         AddScoreBoardEntry(name);

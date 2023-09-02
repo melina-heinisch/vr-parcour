@@ -3249,6 +3249,8 @@ MonoBehaviour:
   rigidbodyObj: {fileID: 841132393}
   startBarrier: {fileID: 980945237}
   endBarrier: {fileID: 381218833}
+  easterEgg: {fileID: 8300000, guid: ed3ca7c86a8d7134abb8d752db624cc7, type: 3}
+  gameOver: {fileID: 8300000, guid: 5b45a861193c9534996d5f22e42bb55c, type: 3}
   isGameRunning: 1
   totalTime: 180
   timeRemaining: 180
