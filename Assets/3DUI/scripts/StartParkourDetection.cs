@@ -12,7 +12,7 @@ public class StartParkourDetection : MonoBehaviour
         if(other.CompareTag("VRUserBodyPart"))
         {
             Debug.Log("Player started the race!!");
-            //GetComponent<AudioSource>().Play();
+            GetComponent<AudioSource>().Play();
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<BoxCollider>().enabled = false;
             transform.Find("Text (TMP)").gameObject.SetActive(false);

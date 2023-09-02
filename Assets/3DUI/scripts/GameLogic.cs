@@ -92,6 +92,7 @@ public class GameLogic : MonoBehaviour
     {
         isGameRunning = false;
         Debug.Log("Game Over");
+        GetComponent<AudioSource>().Play();
         //TODO: Why is reset after falling not working?
         StartCoroutine(RestartGame(1f, "Game Over - Restarting", 3f));
     }
