@@ -13,6 +13,9 @@ public class RespawnGun : MonoBehaviour
     
     public void RespawnGunToStartPosition()
     {
+        // Reset velocity, so the gun just drops straight down
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         this.gameObject.transform.position = startPosition.position;
     }
 }
