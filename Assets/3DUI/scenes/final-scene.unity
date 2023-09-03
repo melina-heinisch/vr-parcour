@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.33537984, g: 0.33515334, b: 0.3322292, a: 0.5}
+  m_IndirectSpecularColor: {r: 0.33537987, g: 0.33515337, b: 0.3322292, a: 0.5}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3249,7 +3249,7 @@ MonoBehaviour:
   rigidbodyObj: {fileID: 841132393}
   startBarrier: {fileID: 980945237}
   endBarrier: {fileID: 381218833}
-  easterEgg: {fileID: 8300000, guid: db8b3fce005963d46bd098e7ae6538a1, type: 3}
+  easterEgg: {fileID: 8300000, guid: 54f52f69d043c8047933accc00bb0fad, type: 3}
   gameOver: {fileID: 8300000, guid: 5b45a861193c9534996d5f22e42bb55c, type: 3}
   isGameRunning: 1
   totalTime: 180
@@ -20276,7 +20276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 841132388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -81.5, y: 3, z: 224.83}
+  m_LocalPosition: {x: 0.8, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -29914,7 +29914,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251483219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.83, y: 0.792, z: -0.872}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -51701,7 +51701,7 @@ PrefabInstance:
     - target: {fileID: 8452433289597446825, guid: 75b7671f6107b6543b6ce7cd9779dbb0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8452433289597446825, guid: 75b7671f6107b6543b6ce7cd9779dbb0,
         type: 3}
