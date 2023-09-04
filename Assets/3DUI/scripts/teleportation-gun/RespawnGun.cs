@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RespawnGun : MonoBehaviour
 {
     private Transform startPosition;
+    public bool doOnce = false;
     
     public void SetStartPosition(Transform start)
     {
@@ -13,10 +12,21 @@ public class RespawnGun : MonoBehaviour
     
     public void RespawnGunToStartPosition()
     {
-        // Reset velocity, so the gun just drops straight down
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        gameObject.transform.position = startPosition.position;
-        gameObject.SetActive(true);
+        if (doOnce)
+        {
+            doOnce = false;
+            gameObject.SetActive(false);
+            // Reset velocity, so the gun just drops straight down
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            gameObject.transform.position = startPosition.position;
+            gameObject.SetActive(true);
+        }
+        
+    }
+
+    public void enableOnce()
+    {
+        doOnce = true;
     }
 }

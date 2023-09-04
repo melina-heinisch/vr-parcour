@@ -56,7 +56,7 @@ public class Teleportation : MonoBehaviour
     {
         SelectExitEventArgs drop = new();
         currentTeleportationGun.GetComponent<XRGrabInteractable>().selectExited.Invoke(drop);
-        currentTeleportationGun.SetActive(false);
+
     }
 
     public void SetTeleportationGun(GameObject teleportationGun)
