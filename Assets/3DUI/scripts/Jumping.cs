@@ -13,7 +13,7 @@ public class Jumping : MonoBehaviour
 
     public Rigidbody rigidbodyObj;
     public float jumpforceUp = 4f;
-    public float jumpforceFront = 3f;
+    public float jumpforceFront = 2f;
 
     private RaycastHit lastRayCastHit;
     private bool rButtonWasPressed = false;
@@ -73,7 +73,6 @@ public class Jumping : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
-        rigidbodyObj.velocity *= 0.5f;
         jumpCounter = 0;
     }
 }
