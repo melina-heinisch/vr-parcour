@@ -9,6 +9,8 @@ public class Jumping : MonoBehaviour
     [Tooltip("You need to manually add reference to the VRHostSystem GameObject")]
     public VRHostSystem VRHostSystem;
 
+    public GameObject forwardDirection;
+
     public Rigidbody rigidbodyObj;
     public float jumpforceUp = 4f;
     public float jumpforceFront = 3f;
@@ -36,7 +38,7 @@ public class Jumping : MonoBehaviour
                     {
                        bButtonWasPressed = true;
                        rigidbodyObj.AddForce(Vector3.up * jumpforceUp, ForceMode.Impulse);
-                       //rigidbodyObj.AddForce(Vector3.forward * jumpforceFront, ForceMode.Impulse); to do right forward
+                       rigidbodyObj.AddForce(forwardDirection.transform.forward * jumpforceFront, ForceMode.Impulse); //to do right forward
 
                        jumpCounter++;
                        Debug.Log("Jumping! " + Time.deltaTime); 
@@ -53,6 +55,7 @@ public class Jumping : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
+        rigidbodyObj.velocity *= 0.5f;
         jumpCounter = 0;
     }
 }

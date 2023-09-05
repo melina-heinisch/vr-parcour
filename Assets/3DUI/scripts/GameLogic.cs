@@ -5,6 +5,7 @@ using _3DUI.scripts.keyboard;
 using _3DUI.scripts.scoreboard;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class GameLogic : MonoBehaviour
@@ -29,6 +30,7 @@ public class GameLogic : MonoBehaviour
     public TextMeshProUGUI timeTextScore2;
     public TextMeshProUGUI timeTextScore3;
     public TextMeshProUGUI timeTextScore4;
+    public TextMeshProUGUI timeTextScoreWatch;
     public GameObject resultUi;
     public TextMeshProUGUI timeTextResult;
     public GameObject restartTimer;
@@ -46,7 +48,7 @@ public class GameLogic : MonoBehaviour
     {
         timeRemaining = totalTime;
         string time = GetTimeInMinSec(timeRemaining);
-        timeTextGoal.text = timeTextScore1.text = timeTextScore2.text = timeTextScore3.text = timeTextScore4.text = time;
+        timeTextGoal.text = timeTextScore1.text = timeTextScore2.text = timeTextScore3.text = timeTextScore4.text =  timeTextScoreWatch.text = time;
 
         handSwinging = VRHostSystem.getXROriginGameObject().GetComponent<HandSwinging>();
 
@@ -81,7 +83,7 @@ public class GameLogic : MonoBehaviour
                 timeRemaining = 0;
             }
             string time = GetTimeInMinSec(timeRemaining);
-            timeTextGoal.text = timeTextScore1.text = timeTextScore2.text = timeTextScore3.text = timeTextScore4.text = time;
+            timeTextGoal.text = timeTextScore1.text = timeTextScore2.text = timeTextScore3.text = timeTextScore4.text =  timeTextScoreWatch.text = time;
           }
 
           if (isGameOver)
@@ -142,7 +144,7 @@ public class GameLogic : MonoBehaviour
         rightHand.GetComponent<XRInteractorLineVisual>().enabled = false;
         timeRemaining = totalTime;
         string time = GetTimeInMinSec(timeRemaining);
-        timeTextGoal.text = timeTextScore1.text = timeTextScore2.text = timeTextScore3.text = timeTextScore4.text = time;
+        timeTextGoal.text = timeTextScore1.text = timeTextScore2.text = timeTextScore3.text = timeTextScore4.text =  timeTextScoreWatch.text = time;
         isWin = false;
         isGameOver = false;
         timerActive = false;
