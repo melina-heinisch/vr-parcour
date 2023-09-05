@@ -16,7 +16,9 @@ public class Jumping : MonoBehaviour
     public float jumpforceFront = 3f;
 
     private RaycastHit lastRayCastHit;
-    private bool bButtonWasPressed = false;
+    private bool rButtonWasPressed = false;
+    private bool lButtonWasPressed = false;
+
 
     private int jumpCounter = 0;
 
@@ -27,28 +29,44 @@ public class Jumping : MonoBehaviour
 
     private void Jump()
     {
-        if (VRHostSystem.GetLeftHandDevice().isValid && VRHostSystem.GetRightHandDevice().isValid)
+        if (VRHostSystem.GetLeftHandDevice().isValid || VRHostSystem.GetRightHandDevice().isValid)
         {
-            if (VRHostSystem.GetLeftHandDevice().TryGetFeatureValue(CommonUsages.gripButton, out bool leftGripButton)
-                && VRHostSystem.GetRightHandDevice().TryGetFeatureValue(CommonUsages.gripButton, out bool rightGripButton))
+            bool leftTrigger = false;
+            bool rightTrigger = false;
+            if (VRHostSystem.GetLeftHandDevice().TryGetFeatureValue(CommonUsages.triggerButton, out leftTrigger))
             {
-                if (!bButtonWasPressed && leftGripButton && rightGripButton)
+                if (!lButtonWasPressed && leftTrigger)
                 {
                     if (jumpCounter < 2)
                     {
-                       bButtonWasPressed = true;
-                       rigidbodyObj.AddForce(Vector3.up * jumpforceUp, ForceMode.Impulse);
-                       rigidbodyObj.AddForce(forwardDirection.transform.forward * jumpforceFront, ForceMode.Impulse); //to do right forward
+                        lButtonWasPressed = true;
+                        rigidbodyObj.AddForce(Vector3.up * jumpforceUp, ForceMode.Impulse);
+                        rigidbodyObj.AddForce(forwardDirection.transform.forward * jumpforceFront, ForceMode.Impulse); //to do right forward
 
-                       jumpCounter++;
-                       Debug.Log("Jumping! " + Time.deltaTime); 
+                        jumpCounter++;
+                        Debug.Log("Jumping! " + Time.deltaTime); 
                     }
-                    
                 }
-                if (!leftGripButton && !rightGripButton && bButtonWasPressed)
+                if (!leftTrigger && lButtonWasPressed)
+                    lButtonWasPressed = false;
+            }
+
+            if (VRHostSystem.GetRightHandDevice().TryGetFeatureValue(CommonUsages.triggerButton, out rightTrigger))
+            {
+                if(!rButtonWasPressed && rightTrigger)
                 {
-                    bButtonWasPressed = false;
+                    if (jumpCounter < 2)
+                    {
+                        rButtonWasPressed = true;
+                        rigidbodyObj.AddForce(Vector3.up * jumpforceUp, ForceMode.Impulse);
+                        rigidbodyObj.AddForce(forwardDirection.transform.forward * jumpforceFront, ForceMode.Impulse); //to do right forward
+
+                        jumpCounter++;
+                        Debug.Log("Jumping! " + Time.deltaTime); 
+                    }
                 }
+                if(!rightTrigger && rButtonWasPressed)
+                    rButtonWasPressed = false;
             }
         }
     }

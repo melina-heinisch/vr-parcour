@@ -116,6 +116,7 @@ public class GameLogic : MonoBehaviour
         rightHand.GetComponent<XRRayInteractor>().lineType = XRRayInteractor.LineType.StraightLine;
         rightHand.GetComponent<XRInteractorLineVisual>().enabled = true;
         VRHostSystem.getXROriginGameObject().GetComponent<HandSwinging>().enabled = false;
+        VRHostSystem.getXROriginGameObject().GetComponent<Jumping>().enabled = false;
         restartTimer.GetComponent<Timer>().StartTimer(restartTimerDuration);
         restartCoroutine = StartCoroutine(RestartGame(restartTimerDuration));
         
@@ -152,6 +153,7 @@ public class GameLogic : MonoBehaviour
         VRHostSystem.getXROriginGameObject().transform.position = new Vector3(0, 3f, 0);
         VRHostSystem.getXROriginGameObject().transform.eulerAngles = new Vector3(0, 0, 0);
         VRHostSystem.getXROriginGameObject().GetComponent<HandSwinging>().enabled = true;
+        VRHostSystem.getXROriginGameObject().GetComponent<Jumping>().enabled = true;
         startBarrier.GetComponent<StartParkourDetection>().Reset();
         endBarrier.GetComponent<EndParkourDetection>().Reset();
         GetComponent<AudioSource>().clip = gameOver;
