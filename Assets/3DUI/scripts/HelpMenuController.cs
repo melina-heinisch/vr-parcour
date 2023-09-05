@@ -81,6 +81,7 @@ public class HelpMenuController : MonoBehaviour
         AttachCameraToMenuCanvasAndDisplayMenu();
         StateController.isHelpMenuOpened = true;
         VRHostSystem.getXROrigin().GetComponent<HandSwinging>().enabled = false;
+        VRHostSystem.getXROrigin().GetComponent<Jumping>().enabled = false;
     }
 
     private void AttachCameraToMenuCanvasAndDisplayMenu()
@@ -106,10 +107,12 @@ public class HelpMenuController : MonoBehaviour
         {
             var where = VRHostSystem.GetCamera().transform;
             var translation = new Vector3(-3.5f, -1f, 6f);
+            var angle = where.eulerAngles.y + VRHostSystem.getXROriginGameObject().transform.eulerAngles.y;
+            translation = Quaternion.AngleAxis(angle, Vector3.up) * translation;
             var rotation = Quaternion.identity;
             var position = where.position + translation;
             menuInstanced = Instantiate(menuPrefab, position, rotation, null);
-            menuInstanced.transform.Rotate(0, where.rotation.y + VRHostSystem.getXROriginGameObject().transform.rotation.y, 0);
+            menuInstanced.transform.Rotate(0, where.eulerAngles.y + VRHostSystem.getXROriginGameObject().transform.eulerAngles.y, 0);
             var slideManager = menuInstanced.GetComponent<SlideManager>();
             if (slideManager)
                 slideManager.closeAction = Close;
@@ -129,6 +132,7 @@ public class HelpMenuController : MonoBehaviour
             menuInstanced = null;
             StateController.isHelpMenuOpened = false;
             VRHostSystem.getXROrigin().GetComponent<HandSwinging>().enabled = true;
+            VRHostSystem.getXROrigin().GetComponent<Jumping>().enabled = true;
         }
     }
     

@@ -44,6 +44,8 @@ public class GameLogic : MonoBehaviour
     private Coroutine restartCoroutine;
     private HandSwinging handSwinging;
 
+    private HashSet<TimePenaltyDetection> appliedPenalties = new();
+
     private void Start()
     {
         timeRemaining = totalTime;
@@ -139,6 +141,8 @@ public class GameLogic : MonoBehaviour
         yield return new WaitForSeconds(wait);
         Fader.FadeToBlack(infoText: infoText);
         yield return new WaitForSeconds(blackTime);
+        HelpMenuController helpMenuController = FindObjectOfType<HelpMenuController>();
+        if(helpMenuController) helpMenuController.Close();
         resultUi.SetActive(false);
         scoreboard.SetActive(false);
         rightHand.GetComponent<XRRayInteractor>().lineType = XRRayInteractor.LineType.BezierCurve;
@@ -149,6 +153,11 @@ public class GameLogic : MonoBehaviour
         isWin = false;
         isGameOver = false;
         timerActive = false;
+        foreach (var timePenaltyDetection in appliedPenalties)
+        {
+            timePenaltyDetection.Reset();
+        }
+        appliedPenalties.Clear();
         rigidbodyObj.velocity = Vector3.zero;
         VRHostSystem.getXROriginGameObject().transform.position = new Vector3(0, 3f, 0);
         VRHostSystem.getXROriginGameObject().transform.eulerAngles = new Vector3(0, 0, 0);
@@ -160,6 +169,15 @@ public class GameLogic : MonoBehaviour
         handSwinging.timeSinceGameStart = 0.0f;
         isGameRunning = true;
         Fader.FadeToScene();
+    }
+
+    public void AddTimePenalty(TimePenaltyDetection timePenaltyDetection)
+    {
+        var applied = appliedPenalties.Add(timePenaltyDetection);
+        if (applied)
+        {
+            timeRemaining -= timePenaltyDetection.penalty;
+        }
     }
     
     public List<ScoreBoardEntry> GetSortedScoreBoardEntries(List<ScoreBoardEntry> entries)

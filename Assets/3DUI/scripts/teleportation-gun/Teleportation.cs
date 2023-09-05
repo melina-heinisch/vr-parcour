@@ -109,7 +109,7 @@ public class Teleportation : MonoBehaviour
         GenerateSound();
         bButtonWasPressed = false;
         StateController.preTravelModeActivated = false;
-        VRHostSystem.getXROriginGameObject().transform.position = lastRayCastHit.point;
+        VRHostSystem.getXROriginGameObject().transform.position = lastRayCastHit.point + Vector3.up * 1.5f;
         Debug.Log("Teleportation! ");
         preTravelObject.SetActive(false);
         firstTeleport = true;
