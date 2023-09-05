@@ -51,7 +51,7 @@ public class HelpMenuController : MonoBehaviour
                     bButtonWasPressed = false;
                     if (menuInstanced == null && VRHostSystem.GetCamera() != null)
                     {
-                        Open(gameObject.transform); // actually doesnt matter where as Canvas is render in camera view, here just to let students modify the position later
+                        Open(); // actually doesnt matter where as Canvas is render in camera view, here just to let students modify the position later
                     }
                     else
                     {
@@ -66,7 +66,7 @@ public class HelpMenuController : MonoBehaviour
     {
         if (menuInstanced == null)
         {
-            Open(transform);
+            Open();
         }
         else
         {
@@ -75,11 +75,12 @@ public class HelpMenuController : MonoBehaviour
     }
 
 
-    public void Open(Transform Where)
+    public void Open()
     {
-        CreateMenuFromPrefab(Where);
+        CreateMenuFromPrefab();
         AttachCameraToMenuCanvasAndDisplayMenu();
         StateController.isHelpMenuOpened = true;
+        VRHostSystem.getXROrigin().GetComponent<HandSwinging>().enabled = false;
     }
 
     private void AttachCameraToMenuCanvasAndDisplayMenu()
@@ -99,11 +100,16 @@ public class HelpMenuController : MonoBehaviour
         }
     }
 
-    private void CreateMenuFromPrefab(Transform Where)
+    private void CreateMenuFromPrefab()
     {
         if (menuPrefab != null)
         {
-            menuInstanced = Instantiate(menuPrefab, Where.position, Quaternion.identity);
+            var where = VRHostSystem.GetCamera().transform;
+            var translation = new Vector3(-3.5f, -1f, 6f);
+            var rotation = Quaternion.identity;
+            var position = where.position + translation;
+            menuInstanced = Instantiate(menuPrefab, position, rotation, null);
+            menuInstanced.transform.Rotate(0, where.rotation.y + VRHostSystem.getXROriginGameObject().transform.rotation.y, 0);
             var slideManager = menuInstanced.GetComponent<SlideManager>();
             if (slideManager)
                 slideManager.closeAction = Close;
@@ -122,6 +128,7 @@ public class HelpMenuController : MonoBehaviour
             Destroy(menuInstanced);
             menuInstanced = null;
             StateController.isHelpMenuOpened = false;
+            VRHostSystem.getXROrigin().GetComponent<HandSwinging>().enabled = true;
         }
     }
     

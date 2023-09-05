@@ -27,6 +27,8 @@ public class GameLogic : MonoBehaviour
     public TextMeshProUGUI timeTextGoal;
     public TextMeshProUGUI timeTextScore1;
     public TextMeshProUGUI timeTextScore2;
+    public TextMeshProUGUI timeTextScore3;
+    public TextMeshProUGUI timeTextScore4;
     public GameObject resultUi;
     public TextMeshProUGUI timeTextResult;
     public GameObject restartTimer;
@@ -44,7 +46,7 @@ public class GameLogic : MonoBehaviour
     {
         timeRemaining = totalTime;
         string time = GetTimeInMinSec(timeRemaining);
-        timeTextGoal.text = timeTextScore1.text = timeTextScore2.text = time;
+        timeTextGoal.text = timeTextScore1.text = timeTextScore2.text = timeTextScore3.text = timeTextScore4.text = time;
 
         handSwinging = VRHostSystem.getXROriginGameObject().GetComponent<HandSwinging>();
 
@@ -79,7 +81,7 @@ public class GameLogic : MonoBehaviour
                 timeRemaining = 0;
             }
             string time = GetTimeInMinSec(timeRemaining);
-            timeTextGoal.text = timeTextScore1.text = timeTextScore2.text = time;
+            timeTextGoal.text = timeTextScore1.text = timeTextScore2.text = timeTextScore3.text = timeTextScore4.text = time;
           }
 
           if (isGameOver)
@@ -109,6 +111,7 @@ public class GameLogic : MonoBehaviour
         resultUi.SetActive(true);
         PopulateScoreboard();
         scoreboard.SetActive(true);
+        rightHand.GetComponent<XRRayInteractor>().lineType = XRRayInteractor.LineType.StraightLine;
         rightHand.GetComponent<XRInteractorLineVisual>().enabled = true;
         VRHostSystem.getXROriginGameObject().GetComponent<HandSwinging>().enabled = false;
         restartTimer.GetComponent<Timer>().StartTimer(restartTimerDuration);
@@ -135,10 +138,11 @@ public class GameLogic : MonoBehaviour
         yield return new WaitForSeconds(blackTime);
         resultUi.SetActive(false);
         scoreboard.SetActive(false);
+        rightHand.GetComponent<XRRayInteractor>().lineType = XRRayInteractor.LineType.BezierCurve;
         rightHand.GetComponent<XRInteractorLineVisual>().enabled = false;
         timeRemaining = totalTime;
         string time = GetTimeInMinSec(timeRemaining);
-        timeTextGoal.text = timeTextScore1.text = timeTextScore2.text = time;
+        timeTextGoal.text = timeTextScore1.text = timeTextScore2.text = timeTextScore3.text = timeTextScore4.text = time;
         isWin = false;
         isGameOver = false;
         timerActive = false;

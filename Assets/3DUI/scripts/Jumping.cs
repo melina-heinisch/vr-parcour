@@ -10,7 +10,8 @@ public class Jumping : MonoBehaviour
     public VRHostSystem VRHostSystem;
 
     public Rigidbody rigidbodyObj;
-    public float jumpforce = 4f;
+    public float jumpforceUp = 4f;
+    public float jumpforceFront = 3f;
 
     private RaycastHit lastRayCastHit;
     private bool bButtonWasPressed = false;
@@ -34,7 +35,9 @@ public class Jumping : MonoBehaviour
                     if (jumpCounter < 2)
                     {
                        bButtonWasPressed = true;
-                       rigidbodyObj.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+                       rigidbodyObj.AddForce(Vector3.up * jumpforceUp, ForceMode.Impulse);
+                       //rigidbodyObj.AddForce(Vector3.forward * jumpforceFront, ForceMode.Impulse); to do right forward
+
                        jumpCounter++;
                        Debug.Log("Jumping! " + Time.deltaTime); 
                     }
