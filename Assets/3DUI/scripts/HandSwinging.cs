@@ -39,37 +39,45 @@ public class HandSwinging : MonoBehaviour
 
     void Update()
     {
-        // Old version: float yRotation = VRHostSystem.getXROriginGameObject().transform.eulerAngles.y;
-        float yRotationRight = rightHand.transform.eulerAngles.y;
-        float yRotationLeft = leftHand.transform.eulerAngles.y;
-        float yRotation = (float)(Math.Round(((yRotationRight + yRotationLeft) / 2) / 10.0)) * 10;
-
-        if ((yRotationLeft > 320 || yRotationRight > 320) && (yRotationLeft < 40 || yRotationRight < 40))
-            yRotation = 0;
-
-        forwardDirection.transform.eulerAngles = new Vector3(0, yRotation, 0);
-
-        //Get current positions of hands
-        positionThisFrameLeftHand = new Vector3(0, leftHand.transform.localPosition.y, 0);
-        positionThisFrameRigthHand =  new Vector3(0, rightHand.transform.localPosition.y, 0);
+        if (VRHostSystem.GetLeftHandDevice().isValid && VRHostSystem.GetRightHandDevice().isValid)
+        {
+            if (VRHostSystem.GetLeftHandDevice().TryGetFeatureValue(CommonUsages.gripButton, out bool leftGrip) && 
+                VRHostSystem.GetRightHandDevice().TryGetFeatureValue(CommonUsages.gripButton, out bool rightGrip))
+            {
+                if (leftGrip || rightGrip)
+                { 
+                    float yRotationRight = rightHand.transform.eulerAngles.y;
+                    float yRotationLeft = leftHand.transform.eulerAngles.y;
+                    float yRotation = (float)(Math.Round(((yRotationRight + yRotationLeft) / 2) / 10.0)) * 10;
         
-
-        //Get distance the hands have moved since the last frame
-        var leftHandDistanceMoved = Vector3.Distance(positionPreviousFrameLeftHand, positionThisFrameLeftHand);
-        var rightHandDistanceMoved = Vector3.Distance(positionPreviousFrameRightHand, positionThisFrameRigthHand);
-
-        //Add them up to get the hand speed from the user
-        handSpeed = ((leftHandDistanceMoved) +
-                     (rightHandDistanceMoved)) * 2f;
-        timeSinceGameStart += Time.deltaTime;
-        speed = accelerationCurve.Evaluate(timeSinceGameStart);
-
-        if (Time.timeSinceLevelLoad > 1f)
-            transform.position += forwardDirection.transform.forward * (handSpeed * speed * Time.deltaTime);
-
-            //Set previous positions of hands for the next frame
-        positionPreviousFrameLeftHand = positionThisFrameLeftHand; //Set player position previous frame
-        positionPreviousFrameRightHand = positionThisFrameRigthHand;
-
+                    if ((yRotationLeft > 320 || yRotationRight > 320) && (yRotationLeft < 40 || yRotationRight < 40))
+                        yRotation = 0;
+        
+                    forwardDirection.transform.eulerAngles = new Vector3(0, yRotation, 0);
+        
+                    //Get current positions of hands
+                    positionThisFrameLeftHand = new Vector3(0, leftHand.transform.localPosition.y, 0);
+                    positionThisFrameRigthHand = new Vector3(0, rightHand.transform.localPosition.y, 0);
+        
+        
+                    //Get distance the hands have moved since the last frame
+                    var leftHandDistanceMoved = Vector3.Distance(positionPreviousFrameLeftHand, positionThisFrameLeftHand);
+                    var rightHandDistanceMoved = Vector3.Distance(positionPreviousFrameRightHand, positionThisFrameRigthHand);
+        
+                    //Add them up to get the hand speed from the user
+                    handSpeed = ((leftHandDistanceMoved) +
+                                 (rightHandDistanceMoved)) * 2f;
+                    timeSinceGameStart += Time.deltaTime;
+                    speed = accelerationCurve.Evaluate(timeSinceGameStart);
+        
+                    if (Time.timeSinceLevelLoad > 1f)
+                        transform.position += forwardDirection.transform.forward * (handSpeed * speed * Time.deltaTime);
+        
+                    //Set previous positions of hands for the next frame
+                    positionPreviousFrameLeftHand = positionThisFrameLeftHand; //Set player position previous frame
+                    positionPreviousFrameRightHand = positionThisFrameRigthHand;
+                }
+            }
+        }
     }
 }

@@ -29,7 +29,7 @@ public class Jumping : MonoBehaviour
 
     private void Jump()
     {
-        if (VRHostSystem.GetLeftHandDevice().isValid || VRHostSystem.GetRightHandDevice().isValid)
+        if (VRHostSystem.GetLeftHandDevice().isValid && VRHostSystem.GetRightHandDevice().isValid)
         {
             bool leftTrigger = false;
             bool rightTrigger = false;
