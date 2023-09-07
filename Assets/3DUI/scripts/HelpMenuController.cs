@@ -1,4 +1,5 @@
-﻿using _3DUI.scripts;
+﻿using System.Collections.Generic;
+using _3DUI.scripts;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -13,6 +14,8 @@ public class HelpMenuController : MonoBehaviour
     private Canvas canvas;
 
     private VRHostSystem VRHostSystem = null;
+
+    private List<GameObject> hiddenObjects = new ();
     
     void Start()
     {
@@ -82,6 +85,26 @@ public class HelpMenuController : MonoBehaviour
         StateController.isHelpMenuOpened = true;
         VRHostSystem.getXROrigin().GetComponent<HandSwinging>().enabled = false;
         VRHostSystem.getXROrigin().GetComponent<Jumping>().enabled = false;
+        
+        //disable any objects that could hide the help menu
+        if (menuInstanced)
+        {
+            var rt = menuInstanced.GetComponentInChildren<RectTransform>();
+            var centerPoint = rt.TransformPoint(rt.rect.center);
+            var distance = VRHostSystem.GetCamera().transform.position - centerPoint;
+            var halfExtents = menuInstanced.transform.localScale;
+            halfExtents.z = distance.magnitude / 2;
+            
+            Collider[] colliders = Physics.OverlapBox(centerPoint + 0.5f * distance, halfExtents);
+            
+                foreach (var collider in colliders)
+                {
+                    var hitTarget = collider.gameObject;
+                    hitTarget.SetActive(false);
+                    hiddenObjects.Add(hitTarget);
+                }
+            
+        }
     }
 
     private void AttachCameraToMenuCanvasAndDisplayMenu()
@@ -134,6 +157,12 @@ public class HelpMenuController : MonoBehaviour
             VRHostSystem.getXROrigin().GetComponent<HandSwinging>().enabled = true;
             VRHostSystem.getXROrigin().GetComponent<Jumping>().enabled = true;
         }
+
+        foreach (var hiddenObject in hiddenObjects)
+        {
+            hiddenObject.SetActive(true);
+        }
+        hiddenObjects.Clear();
     }
     
 }
