@@ -57,7 +57,7 @@ namespace _3DUI.scripts.keyboard
 
         public void RemoveCharacter()
         {
-            typedContent = typedContent.Substring(0, typedContent.Length - 2);
+            typedContent = typedContent.Substring(0, typedContent.Length - 1);
             UpdateDisplay.Invoke(typedContent);
         }
 
