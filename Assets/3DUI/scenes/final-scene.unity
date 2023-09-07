@@ -18342,7 +18342,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 659131856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.080312}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.86, y: 0.0840941, z: 0.86}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -22374,7 +22374,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &841132394
@@ -26770,7 +26770,7 @@ PrefabInstance:
       objectReference: {fileID: 361164412}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
@@ -26778,7 +26778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
@@ -26811,19 +26811,19 @@ PrefabInstance:
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1860304545}
+      objectReference: {fileID: 841132394}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 841132394}
+      objectReference: {fileID: 1860304542}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 1860304542}
+      objectReference: {fileID: 659131856}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
-      objectReference: {fileID: 659131856}
+      objectReference: {fileID: 1013216652}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
@@ -26886,11 +26886,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: set_enabled
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: SetActive
+      value: RespawnGunToStartPosition
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
@@ -26926,11 +26926,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: UnityEngine.Behaviour, UnityEngine
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: RespawnGun, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
@@ -26973,8 +26973,12 @@ PrefabInstance:
       value: 54
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
-      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
@@ -41764,38 +41768,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525134169}
   m_CullTransparentMesh: 1
---- !u!1 &1528019346
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1528019347}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1528019347
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1528019346}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1860304531}
-  m_Father: {fileID: 2145751207}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1533244856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46596,7 +46568,7 @@ PrefabInstance:
       objectReference: {fileID: 361164412}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
@@ -46604,7 +46576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
@@ -46637,19 +46609,19 @@ PrefabInstance:
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1860304545}
+      objectReference: {fileID: 841132394}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 841132394}
+      objectReference: {fileID: 1860304542}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 1860304542}
+      objectReference: {fileID: 659131856}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
-      objectReference: {fileID: 659131856}
+      objectReference: {fileID: 1723477188}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
@@ -46708,11 +46680,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: set_enabled
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: SetActive
+      value: RespawnGunToStartPosition
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
@@ -46748,11 +46720,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: UnityEngine.Behaviour, UnityEngine
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: RespawnGun, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
@@ -46796,11 +46768,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1350751728, guid: b11c856e20ad43e45ae7b37f5037356a, type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
@@ -50081,13 +50053,13 @@ Transform:
   m_GameObject: {fileID: 1860304530}
   m_LocalRotation: {x: -0.6749167, y: 0.036412913, z: 0.032257374, w: 0.7362887}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7752098, y: 0.77521026, z: 0.7752099}
+  m_LocalScale: {x: 0.7752097, y: 0.7752103, z: 0.7752099}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 226067942}
   - {fileID: 1268191194}
-  m_Father: {fileID: 1528019347}
-  m_RootOrder: 0
+  m_Father: {fileID: 2145751207}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -85.340004, y: 0, z: 0}
 --- !u!114 &1860304539
 MonoBehaviour:
@@ -50471,6 +50443,7 @@ MonoBehaviour:
   VRHostSystem: {fileID: 39433392}
   RayCollisionLayer: Default
   rayInteractor: {fileID: 1860304544}
+  teleportationSpeed: 16
   preTravelObject: {fileID: 659131856}
 --- !u!114 &1860304546
 MonoBehaviour:
@@ -57126,7 +57099,7 @@ Transform:
   m_Children:
   - {fileID: 1251483220}
   - {fileID: 30328063}
-  - {fileID: 1528019347}
+  - {fileID: 1860304531}
   - {fileID: 39433391}
   m_Father: {fileID: 841132390}
   m_RootOrder: 0

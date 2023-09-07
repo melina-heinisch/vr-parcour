@@ -11,10 +11,13 @@ public class Teleportation : MonoBehaviour
     [SerializeField] VRHostSystem VRHostSystem;
     public string RayCollisionLayer = "Default";
     public XRRayInteractor rayInteractor;
+    public float teleportationSpeed = 4f;
     private GameObject handControllerGameObject;
     private RaycastHit lastRayCastHit;
     private bool bButtonWasPressed = false;
     private bool firstTeleport = false;
+    private bool teleporting = false;
+    private Vector3 target;
 
     [SerializeField] private GameObject preTravelObject;
 
@@ -24,6 +27,7 @@ public class Teleportation : MonoBehaviour
     void Start()
     {
         getXRHandController();
+        ResetTeleportationGun();
     }
 
     void Update()
@@ -48,8 +52,26 @@ public class Teleportation : MonoBehaviour
 
                 MoveTrackingSpaceRootWithTeleportation();
             }
+
+            if (teleporting && target != Vector3.zero)
+            {
+                VRHostSystem.getXROriginGameObject().transform.position += ((target - VRHostSystem.getXROriginGameObject().transform.position) * (Time.deltaTime * teleportationSpeed));
+                if (Vector3.Magnitude(target - VRHostSystem.getXROriginGameObject().transform.position) < 0.8)
+                {
+                   ResetTeleportationGun();
+                   this.gameObject.GetComponent<Teleportation>().enabled = false;
+                }
+            }
             
         }
+    }
+
+    private void ResetTeleportationGun()
+    {
+        bButtonWasPressed = false;
+        firstTeleport = false;
+        teleporting = false;
+        target = Vector3.zero;
     }
 
     private void DropTeleportationGun()
@@ -97,24 +119,20 @@ public class Teleportation : MonoBehaviour
                 }
                 if (!rightTriggerButton && bButtonWasPressed)
                 {
-                    StartCoroutine(ActivateFader());
+                    GenerateSound();
+                    bButtonWasPressed = false;
+                    StateController.preTravelModeActivated = false;
+                    Debug.Log("Teleportation! ");
+                    preTravelObject.SetActive(false);
+                    firstTeleport = true;
+                    
+                    target =  lastRayCastHit.point + Vector3.up * 3f;
+                    teleporting = true;
+                    //VRHostSystem.getXROrigin().GetComponent<Rigidbody>().MovePosition(lastRayCastHit.point);
+                    //VRHostSystem.getXROriginGameObject().transform.position = lastRayCastHit.point + Vector3.up * 1.5f;
                 }
             }
         }
-    }
-
-    IEnumerator ActivateFader()
-    {
-        Fader.FadeToBlack(10f);
-        GenerateSound();
-        bButtonWasPressed = false;
-        StateController.preTravelModeActivated = false;
-        VRHostSystem.getXROriginGameObject().transform.position = lastRayCastHit.point + Vector3.up * 1.5f;
-        Debug.Log("Teleportation! ");
-        preTravelObject.SetActive(false);
-        firstTeleport = true;
-        yield return new WaitForSeconds(0.5f);
-        Fader.FadeToScene(10f);
     }
     
     private void GenerateSound()
