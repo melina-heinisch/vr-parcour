@@ -25,6 +25,7 @@ namespace _3DUI.scripts.keyboard
 
         public void EnterCharacter(string character)
         {
+            gameObject.GetComponent<AudioSource>().Play();
             switch (character)
             {
                 case "shift":

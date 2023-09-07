@@ -13,6 +13,7 @@ namespace _3DUI.scripts
             if(other.CompareTag("VRUserBodyPart"))
             {
                 GetComponent<BoxCollider>().enabled = false;
+                gameObject.GetComponent<AudioSource>().Play();
                 GameLogic.AddTimePenalty(this);
             }
         }
