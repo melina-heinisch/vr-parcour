@@ -20,7 +20,7 @@ public class Jumping : MonoBehaviour
     private bool lButtonWasPressed = false;
 
 
-    private int jumpCounter = 0;
+    private int jumpCounter = 1;
 
     void Update()
     {
@@ -37,10 +37,10 @@ public class Jumping : MonoBehaviour
             {
                 if (!lButtonWasPressed && leftTrigger)
                 {
-                    if (jumpCounter < 2)
+                    if (jumpCounter < 3)
                     {
                         lButtonWasPressed = true;
-                        rigidbodyObj.AddForce(Vector3.up * jumpforceUp, ForceMode.Impulse);
+                        rigidbodyObj.AddForce(Vector3.up * jumpforceUp/jumpCounter, ForceMode.Impulse);
                         rigidbodyObj.AddForce(forwardDirection.transform.forward * jumpforceFront, ForceMode.Impulse); //to do right forward
 
                         jumpCounter++;
@@ -55,10 +55,10 @@ public class Jumping : MonoBehaviour
             {
                 if(!rButtonWasPressed && rightTrigger)
                 {
-                    if (jumpCounter < 2)
+                    if (jumpCounter < 3)
                     {
                         rButtonWasPressed = true;
-                        rigidbodyObj.AddForce(Vector3.up * jumpforceUp, ForceMode.Impulse);
+                        rigidbodyObj.AddForce(Vector3.up * jumpforceUp/jumpCounter, ForceMode.Impulse);
                         rigidbodyObj.AddForce(forwardDirection.transform.forward * jumpforceFront, ForceMode.Impulse); //to do right forward
 
                         jumpCounter++;
@@ -73,6 +73,6 @@ public class Jumping : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
-        jumpCounter = 0;
+        jumpCounter = 1;
     }
 }

@@ -22393,7 +22393,7 @@ MonoBehaviour:
   forwardDirection: {fileID: 1962198475}
   rigidbodyObj: {fileID: 841132393}
   jumpforceUp: 4
-  jumpforceFront: 3
+  jumpforceFront: 1
 --- !u!136 &841132395
 CapsuleCollider:
   m_ObjectHideFlags: 0
