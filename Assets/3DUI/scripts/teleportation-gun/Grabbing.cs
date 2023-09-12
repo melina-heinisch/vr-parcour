@@ -27,7 +27,7 @@ public class Grabbing : MonoBehaviour
             {
                 uint channel = 0;
                 float amplitude = 0.5f;
-                float duration = 1.0f;
+                float duration = 0.5f;
                 VRHostSystem.GetRightHandDevice().SendHapticImpulse(channel, amplitude, duration);
             }
         }
