@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.XR;
 
 namespace _3DUI.scripts.keyboard
 {
@@ -7,6 +8,9 @@ namespace _3DUI.scripts.keyboard
     {
         public Action<string> UpdateDisplay;
         public Action<string> EnterText;
+
+        private VRHostSystem VRHostSystem;
+        private Vector3 startPosition;
         
         private KeyManager[] keys;
         private string typedContent;
@@ -16,8 +20,15 @@ namespace _3DUI.scripts.keyboard
             keys = GetComponentsInChildren<KeyManager>();
         }
 
+        public void Update()
+        {
+            if (VRHostSystem == null) VRHostSystem = FindObjectOfType<VRHostSystem>();
+            else if (VRHostSystem.AreAllDevicesFound()) RepositionKeyboardButtonCheck();
+        }
+
         public void Reset()
         {
+            gameObject.transform.position = startPosition;
             typedContent = "";
             if(keys[0].isShifted)
                 ToggleShift();
@@ -64,6 +75,25 @@ namespace _3DUI.scripts.keyboard
         public void Enter()
         {
             EnterText.Invoke(typedContent);
+        }
+
+        private void RepositionKeyboardButtonCheck()
+        {
+            if (VRHostSystem.GetLeftHandDevice().isValid)
+            {
+                if (VRHostSystem.GetLeftHandDevice().TryGetFeatureValue(CommonUsages.primary2DAxis, out var primaryAxis))
+                {
+                    if (primaryAxis.x > 0.3f || primaryAxis.x < -0.3f)
+                    {
+                        gameObject.transform.Translate(Vector3.right * (primaryAxis.x / 2 * Time.deltaTime), Space.World);
+                    }
+
+                    if (primaryAxis.y > 0.3f || primaryAxis.y < -0.3f)
+                    {
+                        gameObject.transform.Translate(Vector3.forward * (primaryAxis.y / 2 * Time.deltaTime), Space.World);
+                    }
+                }
+            }
         }
     }
 }
