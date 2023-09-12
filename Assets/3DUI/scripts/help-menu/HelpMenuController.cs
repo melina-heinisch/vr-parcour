@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using _3DUI.scripts;
 using UnityEngine;
 using UnityEngine.XR;
@@ -36,6 +37,12 @@ public class HelpMenuController : MonoBehaviour
             {
                 OpenOrCloseHelpMenu();
             }
+        }
+
+        if (StateController.showInitialHelpMenu)
+        {
+            StateController.showInitialHelpMenu = false;
+            Open();
         }
     }
     
@@ -86,20 +93,23 @@ public class HelpMenuController : MonoBehaviour
         VRHostSystem.getXROrigin().GetComponent<HandSwinging>().enabled = false;
         VRHostSystem.getXROrigin().GetComponent<Jumping>().enabled = false;
         
+        //stop the timer
+        FindObjectOfType<GameLogic>().isGameRunning = false;
+        
         //disable any objects that could hide the help menu
         if (menuInstanced)
         {
             var rt = menuInstanced.GetComponentInChildren<RectTransform>();
             var centerPoint = rt.TransformPoint(rt.rect.center);
             var distance = VRHostSystem.GetCamera().transform.position - centerPoint;
-            var halfExtents = menuInstanced.transform.localScale;
-            halfExtents.z = distance.magnitude / 2;
+            var halfExtents = new Vector3(4, 2, 1);
+            halfExtents.z = distance.magnitude;
             
             Collider[] colliders = Physics.OverlapBox(centerPoint + 0.5f * distance, halfExtents);
-            
                 foreach (var collider in colliders)
                 {
                     var hitTarget = collider.gameObject;
+                    if(hitTarget.layer == LayerMask.NameToLayer("player")) continue;
                     hitTarget.SetActive(false);
                     hiddenObjects.Add(hitTarget);
                 }
@@ -162,7 +172,25 @@ public class HelpMenuController : MonoBehaviour
         {
             hiddenObject.SetActive(true);
         }
+        
+        FindObjectOfType<GameLogic>().isGameRunning = true;
+        
         hiddenObjects.Clear();
     }
-    
+
+    /*public void OnDrawGizmos()
+    {
+        //To use this method, add a bool started to the script and set it to true in the start method
+        if (!started) return;
+        Gizmos.color = Color.red;
+        if (menuInstanced)
+        {
+            var rt = menuInstanced.GetComponentInChildren<RectTransform>();
+            var centerPoint = rt.TransformPoint(rt.rect.center);
+            var distance = VRHostSystem.GetCamera().transform.position - centerPoint;
+            var halfExtents = new Vector3(4,3,1);
+            halfExtents.z = distance.magnitude;
+            Gizmos.DrawWireCube(centerPoint + 0.5f * distance, halfExtents);
+        }
+    }*/
 }

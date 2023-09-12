@@ -240,5 +240,6 @@ public class GameLogic : MonoBehaviour
         keyboard.SetActive(false);
         nameInputField.SetActive(false);
         PopulateScoreboard();
+        PopulateScoreboard();
     }
 }

@@ -45,7 +45,6 @@ namespace _3DUI.scripts.scoreboard
                     }
                 }
                 scoreBoard.Sort();
-                Debug.Log(scoreBoard.Count);
             }
             else
             {

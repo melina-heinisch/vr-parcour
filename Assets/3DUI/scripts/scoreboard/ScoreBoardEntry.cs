@@ -15,7 +15,7 @@ namespace _3DUI.scripts.scoreboard
             Time = time;
         }
 
-        public ScoreBoardEntry(string name, float time) : this(new Guid().ToString(), name, time)
+        public ScoreBoardEntry(string name, float time) : this(Guid.NewGuid().ToString(), name, time)
         {
             
         }
