@@ -166,7 +166,6 @@ public class GameLogic : MonoBehaviour
         startBarrier.GetComponent<StartParkourDetection>().Reset();
         endBarrier.GetComponent<EndParkourDetection>().Reset();
         GetComponent<AudioSource>().clip = gameOver;
-        handSwinging.timeSinceGameStart = 0.0f;
         isGameRunning = true;
         Fader.FadeToScene();
     }

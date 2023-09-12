@@ -13,7 +13,6 @@ public class HandSwinging : MonoBehaviour
     public GameObject leftHand;
     public GameObject rightHand; 
     public GameObject forwardDirection;
-    [FormerlySerializedAs("highSpeedModeAccelerationCurve")] public AnimationCurve accelerationCurve;
     
     //Vector3 positions
     private Vector3 positionPreviousFrameLeftHand;
@@ -24,11 +23,11 @@ public class HandSwinging : MonoBehaviour
     private Rigidbody rb;
     
     //Speed
-    public float speed = 100; 
+    [FormerlySerializedAs("speed")] public float accelerationMultiplier = 200; 
+    public float maxVelocity = 5f; 
     private float handSpeed;
     // Start is called before the first frame update
 
-    public float timeSinceGameStart = 0.0f;
     void Start()
     {
         //Set original Previous frame positions at start up
@@ -69,14 +68,13 @@ public class HandSwinging : MonoBehaviour
                 //Add them up to get the hand speed from the user
                 handSpeed = ((leftHandDistanceMoved) +
                              (rightHandDistanceMoved)) * 2f;
-                timeSinceGameStart += Time.deltaTime;
-                //speed = accelerationCurve.Evaluate(timeSinceGameStart);
+
                 if (leftGrip || rightGrip)
                 {
                     if (Time.timeSinceLevelLoad > 1f)
                     {
-                        Vector3 movement = forwardDirection.transform.forward * (handSpeed * speed * Time.deltaTime);
-                        if(rb.velocity.magnitude <= 5)
+                        Vector3 movement = forwardDirection.transform.forward * (handSpeed * accelerationMultiplier * Time.deltaTime);
+                        if(rb.velocity.magnitude <= maxVelocity)
                             rb.AddForce(movement, ForceMode.VelocityChange);
                     }
                 }

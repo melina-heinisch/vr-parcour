@@ -12715,41 +12715,8 @@ MonoBehaviour:
   leftHand: {fileID: 30328058}
   rightHand: {fileID: 1860304530}
   forwardDirection: {fileID: 1962198475}
-  accelerationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.846792
-      value: 29.98404
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 9.792591
-      value: 50.03432
-      inSlope: -0.0029357946
-      outSlope: -0.0029357946
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.65042746
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 66.705925
-      value: 50.04757
-      inSlope: -Infinity
-      outSlope: -Infinity
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  speed: 100
-  timeSinceGameStart: 0
+  accelerationMultiplier: 200
+  maxVelocity: 5
 --- !u!54 &841132393
 Rigidbody:
   m_ObjectHideFlags: 0
