@@ -12,7 +12,6 @@ public class Teleportation : MonoBehaviour
     public string RayCollisionLayer = "Default";
     public XRRayInteractor rayInteractor;
     public float teleportationSpeed = 4f;
-    private GameObject handControllerGameObject;
     private RaycastHit lastRayCastHit;
     private bool bButtonWasPressed = false;
     private bool firstTeleport = false;
@@ -23,10 +22,8 @@ public class Teleportation : MonoBehaviour
 
     private GameObject currentTeleportationGun;
 
-    //https://vionixstudio.com/2021/10/26/how-to-make-a-character-jump-in-unity/
     void Start()
     {
-        getXRHandController();
         ResetTeleportationGun();
     }
 
@@ -78,23 +75,20 @@ public class Teleportation : MonoBehaviour
     {
         SelectExitEventArgs drop = new();
         currentTeleportationGun.GetComponent<XRGrabInteractable>().selectExited.Invoke(drop);
-
     }
 
+    // Set gun on select entered (in interactable events of teleportation gun)
     public void SetTeleportationGun(GameObject teleportationGun)
     {
         currentTeleportationGun = teleportationGun;
     }
 
-    private void getXRHandController()
-    {
-        handControllerGameObject = this.gameObject;
-    }
     private void getPointCollidingWithRayCasting()
     {
         rayInteractor.TryGetCurrent3DRaycastHit(out lastRayCastHit);
     }
 
+    // Rotate pre travel object in forward direction of player
     private void RotatePreTravelObject()
     {
         // adapted from ChatGPT
@@ -122,14 +116,11 @@ public class Teleportation : MonoBehaviour
                     GenerateSound();
                     bButtonWasPressed = false;
                     StateController.preTravelModeActivated = false;
-                    Debug.Log("Teleportation! ");
                     preTravelObject.SetActive(false);
                     firstTeleport = true;
                     
                     target =  lastRayCastHit.point + Vector3.up * 3f;
                     teleporting = true;
-                    //VRHostSystem.getXROrigin().GetComponent<Rigidbody>().MovePosition(lastRayCastHit.point);
-                    //VRHostSystem.getXROriginGameObject().transform.position = lastRayCastHit.point + Vector3.up * 1.5f;
                 }
             }
         }
