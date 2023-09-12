@@ -43,6 +43,8 @@ public class Jumping : MonoBehaviour
                         rigidbodyObj.AddForce(Vector3.up * jumpforceUp/jumpCounter, ForceMode.Impulse);
                         rigidbodyObj.AddForce(forwardDirection.transform.forward * jumpforceFront, ForceMode.Impulse); //to do right forward
 
+                        GenerateSound();
+                        
                         jumpCounter++;
                         Debug.Log("Jumping! " + Time.deltaTime); 
                     }
@@ -61,6 +63,8 @@ public class Jumping : MonoBehaviour
                         rigidbodyObj.AddForce(Vector3.up * jumpforceUp/jumpCounter, ForceMode.Impulse);
                         rigidbodyObj.AddForce(forwardDirection.transform.forward * jumpforceFront, ForceMode.Impulse); //to do right forward
 
+                        GenerateSound();
+                        
                         jumpCounter++;
                         Debug.Log("Jumping! " + Time.deltaTime); 
                     }
@@ -68,6 +72,19 @@ public class Jumping : MonoBehaviour
                 if(!rightTrigger && rButtonWasPressed)
                     rButtonWasPressed = false;
             }
+        }
+    }
+    
+    private void GenerateSound()
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
+        else
+        {
+            Debug.Log("No Audio Source Found!");
         }
     }
     
