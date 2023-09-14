@@ -58,11 +58,11 @@ public class GameLogic : MonoBehaviour
         var sbm = ScoreBoardManager.Instance;
         if (sbm.scoreBoard.Count == 0)
         {
-            sbm.AddScoreBoardEntry(new ScoreBoardEntry("Luise", 9.68f));
-            sbm.AddScoreBoardEntry(new ScoreBoardEntry("Lars", 7.68f));
-            sbm.AddScoreBoardEntry(new ScoreBoardEntry("Laura", 8.68f));
-            sbm.AddScoreBoardEntry(new ScoreBoardEntry("Leon", 7.98f));
-            sbm.AddScoreBoardEntry(new ScoreBoardEntry("Lea", 8.38f));
+            sbm.AddScoreBoardEntry(new ScoreBoardEntry("Lukas", 43.03381f));
+            sbm.AddScoreBoardEntry(new ScoreBoardEntry("Meow", 44.99686f));
+            sbm.AddScoreBoardEntry(new ScoreBoardEntry("Melina", 50.52271f));
+            sbm.AddScoreBoardEntry(new ScoreBoardEntry("Lena", 54.79762f));
+            sbm.AddScoreBoardEntry(new ScoreBoardEntry("Lukas", 56.89939f));
         }
         PopulateScoreboard();
         scoreboard.SetActive(false);
@@ -115,7 +115,7 @@ public class GameLogic : MonoBehaviour
         resultUi.SetActive(true);
         PopulateScoreboard();
         scoreboard.SetActive(true);
-        rightHand.GetComponent<XRRayInteractor>().lineType = XRRayInteractor.LineType.StraightLine;
+        rightHand.GetComponent<ModifyRaycast>().setLongStraightRay();
         rightHand.GetComponent<XRInteractorLineVisual>().enabled = true;
         VRHostSystem.getXROriginGameObject().GetComponent<HandSwinging>().enabled = false;
         VRHostSystem.getXROriginGameObject().GetComponent<Jumping>().enabled = false;
@@ -145,7 +145,7 @@ public class GameLogic : MonoBehaviour
         if(helpMenuController) helpMenuController.Close();
         resultUi.SetActive(false);
         scoreboard.SetActive(false);
-        rightHand.GetComponent<XRRayInteractor>().lineType = XRRayInteractor.LineType.BezierCurve;
+        rightHand.GetComponent<ModifyRaycast>().setShortStraightRay();
         rightHand.GetComponent<XRInteractorLineVisual>().enabled = false;
         timeRemaining = totalTime;
         string time = GetTimeInMinSec(timeRemaining);

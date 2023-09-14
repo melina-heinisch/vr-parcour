@@ -18,12 +18,15 @@ namespace _3DUI.scripts.keyboard
         private void Awake()
         {
             keys = GetComponentsInChildren<KeyManager>();
+            startPosition = gameObject.transform.position;
+            Debug.Log(startPosition);
         }
 
         public void Update()
         {
             if (VRHostSystem == null) VRHostSystem = FindObjectOfType<VRHostSystem>();
-            else if (VRHostSystem.AreAllDevicesFound()) RepositionKeyboardButtonCheck();
+            else if (VRHostSystem.AreAllDevicesFound()) 
+                RepositionKeyboardButtonCheck();
         }
 
         public void Reset()
@@ -85,12 +88,12 @@ namespace _3DUI.scripts.keyboard
                 {
                     if (primaryAxis.x > 0.3f || primaryAxis.x < -0.3f)
                     {
-                        gameObject.transform.Translate(Vector3.right * (primaryAxis.x / 2 * Time.deltaTime), Space.World);
+                        gameObject.transform.Translate(Vector3.forward * (primaryAxis.x / 2 * Time.deltaTime), Space.World);
                     }
 
                     if (primaryAxis.y > 0.3f || primaryAxis.y < -0.3f)
                     {
-                        gameObject.transform.Translate(Vector3.forward * (primaryAxis.y / 2 * Time.deltaTime), Space.World);
+                        gameObject.transform.Translate(Vector3.left * (primaryAxis.y / 2 * Time.deltaTime), Space.World);
                     }
                 }
             }

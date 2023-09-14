@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class RespawnGun : MonoBehaviour
 {
     private Transform startPosition;
     public bool doOnce = false;
+    public GameObject rightHand;
     
     public void SetStartPosition(Transform start)
     {
