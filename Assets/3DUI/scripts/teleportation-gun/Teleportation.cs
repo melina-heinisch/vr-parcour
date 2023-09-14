@@ -91,7 +91,15 @@ public class Teleportation : MonoBehaviour
     // Rotate pre travel object in forward direction of player
     private void RotatePreTravelObject()
     {
-        // adapted from ChatGPT
+        // adapted from ChatGPT response
+        /* prompt: Hey ChatGPT, ich möchte in Unity VR ein Objekt um die Y-Achse des HMD drehen. 
+        Ich habe den Code, aber es funktioniert leider nicht. Wo ist der Fehler?
+
+        float cameraY =  VRHostSystem.GetCamera().transform.rotation.y;
+        preTravelObject.transform.rotation = new Vector3(0, cameraY, 0); 
+        
+        intention: Debugging */
+
         float hmdY = VRHostSystem.GetCamera().transform.rotation.eulerAngles.y;
         Vector3 rotationPreTravel = preTravelObject.transform.rotation.eulerAngles;
         rotationPreTravel.y = hmdY;
