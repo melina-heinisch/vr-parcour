@@ -26,6 +26,5 @@ public class ModifyRaycast : MonoBehaviour
     {
         _xrRayInteractor.lineType = XRRayInteractor.LineType.StraightLine;
         _xrRayInteractor.maxRaycastDistance = 30f;
-        Debug.Log(_xrRayInteractor.maxRaycastDistance);
     }
 }
