@@ -1914,29 +1914,30 @@ MonoBehaviour:
   rigidbodyObj: {fileID: 841132393}
   startBarrier: {fileID: 980945237}
   endBarrier: {fileID: 381218833}
-  easterEgg: {fileID: 8300000, guid: 54f52f69d043c8047933accc00bb0fad, type: 3}
-  gameOver: {fileID: 8300000, guid: 5b45a861193c9534996d5f22e42bb55c, type: 3}
-  isGameRunning: 1
-  totalTime: 180
-  timeRemaining: 180
-  timerActive: 0
-  isGameOver: 0
-  isWin: 0
-  timeTextGoal: {fileID: 1936543647}
-  timeTextScore1: {fileID: 1678767562}
-  timeTextScore2: {fileID: 482787085}
-  timeTextScore3: {fileID: 1903106511}
-  timeTextScore4: {fileID: 1370003920}
-  timeTextScoreWatch: {fileID: 799645520}
-  resultUi: {fileID: 678892213}
-  timeTextResult: {fileID: 678710901}
-  restartTimer: {fileID: 1815802354}
-  scoreboardList: {fileID: 599838667}
   scoreboard: {fileID: 1168528321}
   keyboard: {fileID: 1278764499}
   startSaveButton: {fileID: 305444953}
   nameInputField: {fileID: 1466407244}
   restartingInfoText: {fileID: 1963786810}
+  resultUi: {fileID: 678892213}
+  restartTimerObj: {fileID: 1815802354}
+  easterEgg: {fileID: 8300000, guid: 54f52f69d043c8047933accc00bb0fad, type: 3}
+  gameOver: {fileID: 8300000, guid: 5b45a861193c9534996d5f22e42bb55c, type: 3}
+  isGameRunning: 1
+  isGameOver: 0
+  isWin: 0
+  totalTime: 180
+  timeRemaining: 180
+  timerActive: 0
+  timeTexts:
+  - {fileID: 1936543647}
+  - {fileID: 1678767562}
+  - {fileID: 482787085}
+  - {fileID: 1903106511}
+  - {fileID: 1370003920}
+  - {fileID: 799645520}
+  timeTextResult: {fileID: 678710901}
+  scoreboardList: {fileID: 599838667}
 --- !u!4 &131173214
 Transform:
   m_ObjectHideFlags: 0
@@ -12195,7 +12196,7 @@ MonoBehaviour:
   leftHand: {fileID: 30328058}
   rightHand: {fileID: 1860304530}
   forwardDirection: {fileID: 1962198475}
-  accelerationMultiplier: 200
+  accelerationMultiplier: 50
   maxVelocity: 5
 --- !u!54 &841132393
 Rigidbody:
@@ -12226,10 +12227,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VRHostSystem: {fileID: 39433392}
-  forwardDirection: {fileID: 1962198475}
+  forwardDirection: {fileID: 0}
   rigidbodyObj: {fileID: 841132393}
   jumpforceUp: 4
-  jumpforceFront: 1
+  jumpforceFront: 2
 --- !u!136 &841132395
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -27985,7 +27986,7 @@ MonoBehaviour:
   VRHostSystem: {fileID: 39433392}
   RayCollisionLayer: Default
   rayInteractor: {fileID: 1860304544}
-  teleportationSpeed: 16
+  teleportationSpeed: 4
   preTravelObject: {fileID: 659131856}
 --- !u!114 &1860304546
 MonoBehaviour:

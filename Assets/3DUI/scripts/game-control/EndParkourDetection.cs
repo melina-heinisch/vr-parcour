@@ -14,7 +14,7 @@ public class EndParkourDetection : MonoBehaviour
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<BoxCollider>().enabled = false;
             transform.Find("Text (TMP)").gameObject.SetActive(false);
-            GameLogic.timerActive = false;
+            GameLogic.timeChallengeActive = false;
             if (GameLogic.timeRemaining > 0)
                 GameLogic.isWin = true;
         }

@@ -16,7 +16,7 @@ public class StartParkourDetection : MonoBehaviour
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<BoxCollider>().enabled = false;
             transform.Find("Text (TMP)").gameObject.SetActive(false);
-            GameLogic.timerActive = true;
+            GameLogic.timeChallengeActive = true;
         }
     }
     public void Reset()
