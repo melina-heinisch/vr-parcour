@@ -11,7 +11,7 @@ public class Teleportation : MonoBehaviour
     [SerializeField] VRHostSystem VRHostSystem;
     public string RayCollisionLayer = "Default";
     public XRRayInteractor rayInteractor;
-    public float teleportationSpeed = 4f;
+    public float teleportationSpeed = 8f;
     private RaycastHit lastRayCastHit;
     private bool bButtonWasPressed = false;
     private bool firstTeleport = false;
