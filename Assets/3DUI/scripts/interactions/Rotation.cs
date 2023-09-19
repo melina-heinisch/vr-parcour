@@ -51,8 +51,6 @@ public class Rotation : MonoBehaviour
                 {
                     bModeSnapRotation = !bModeSnapRotation;
                     isStickWasPressed = false;
-                    if (bModeSnapRotation) Debug.Log("Snap Turning Is ON");
-                    else Debug.Log("Snap Turning Is OFF (Smooth Rotation");
                 }
             }
 

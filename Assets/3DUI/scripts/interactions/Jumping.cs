@@ -65,7 +65,6 @@ public class Jumping : MonoBehaviour
                         GenerateSound();
                         
                         jumpCounter++;
-                        Debug.Log("Jumping! " + Time.deltaTime); 
                     }
                 }
                 if(!rightTrigger && rButtonWasPressed)

@@ -11,18 +11,18 @@ public class ModifyRaycast : MonoBehaviour
         _xrRayInteractor = gameObject.GetComponent<XRRayInteractor>();
     }
 
-    public void setCurvedRay()
+    public void setCurvedRay() // for teleportation gun
     {
         _xrRayInteractor.lineType = XRRayInteractor.LineType.BezierCurve;
     }
 
-    public void setShortStraightRay()
+    public void setShortStraightRay() // to pick up teleportation gun
     {
         _xrRayInteractor.lineType = XRRayInteractor.LineType.StraightLine;
         _xrRayInteractor.maxRaycastDistance = 0.75f;
     }
 
-    public void setLongStraightRay()
+    public void setLongStraightRay() // for keyboard 
     {
         _xrRayInteractor.lineType = XRRayInteractor.LineType.StraightLine;
         _xrRayInteractor.maxRaycastDistance = 30f;

@@ -49,8 +49,9 @@ public class HandSwinging : MonoBehaviour
             {
                 float yRotationRight = rightHand.transform.eulerAngles.y;
                 float yRotationLeft = leftHand.transform.eulerAngles.y;
-                float yRotation = (float)(Math.Round(((yRotationRight + yRotationLeft) / 2) / 10.0)) * 10;
+                float yRotation = (float)(Math.Round(((yRotationRight + yRotationLeft) / 2) / 10.0)) * 10; // rounds rotation in steps of 10 e.g. 124.323 => 120
         
+                // prevent walking backwards when controller show in the forward direction 
                 if ((yRotationLeft > 320 || yRotationRight > 320) && (yRotationLeft < 40 || yRotationRight < 40))
                     yRotation = 0;
         

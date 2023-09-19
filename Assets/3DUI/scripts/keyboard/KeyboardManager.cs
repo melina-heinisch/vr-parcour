@@ -6,8 +6,8 @@ namespace _3DUI.scripts.keyboard
 {
     public class KeyboardManager : MonoBehaviour
     {
-        public Action<string> UpdateDisplay;
-        public Action<string> EnterText;
+        public Action<string> UpdateDisplay; // initialized in GameLogic 
+        public Action<string> EnterText; // initialized in GameLogic 
 
         private VRHostSystem VRHostSystem;
         private Vector3 startPosition;
@@ -19,7 +19,6 @@ namespace _3DUI.scripts.keyboard
         {
             keys = GetComponentsInChildren<KeyManager>();
             startPosition = gameObject.transform.position;
-            Debug.Log(startPosition);
         }
 
         public void Update()

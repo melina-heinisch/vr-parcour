@@ -51,13 +51,13 @@ namespace _3DUI.scripts
                             var x = thumbstickAxisValue.x;
                             if (x <= -.5f)
                             {
-                                if (thumbStickIsLeft) return;
+                                if (thumbStickIsLeft) return; // to make sure, that only one slide per click is shown
                                 thumbStickIsLeft = true;
                                 PreviousSlide();
                             }
                             else if (x >= .5f)
                             {
-                                if (thumbStickIsRight) return;
+                                if (thumbStickIsRight) return; // to make sure, that only one slide per click is shown
                                 thumbStickIsRight = true;
                                 NextSlide();
                             }

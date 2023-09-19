@@ -8,10 +8,8 @@ public class StartParkourDetection : MonoBehaviour
     [SerializeField] private GameLogic GameLogic;
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Something touched The Start Barrier:" + other.name);
         if(other.CompareTag("VRUserBodyPart"))
         {
-            Debug.Log("Player started the race!!");
             GetComponent<AudioSource>().Play();
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<BoxCollider>().enabled = false;
