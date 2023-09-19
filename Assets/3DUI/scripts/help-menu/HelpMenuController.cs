@@ -16,8 +16,8 @@ public class HelpMenuController : MonoBehaviour
 
     private VRHostSystem VRHostSystem = null;
 
-    private List<GameObject> hiddenObjects = new ();
-    
+    private List<GameObject> hiddenObjects = new();
+
     void Start()
     {
         findVRHostSystem();
@@ -45,17 +45,19 @@ public class HelpMenuController : MonoBehaviour
             Open();
         }
     }
-    
+
     private void OpenOrCloseHelpMenu()
     {
         if (VRHostSystem.GetLeftHandDevice().isValid) // still connected?
         {
-            if (VRHostSystem.GetLeftHandDevice().TryGetFeatureValue(CommonUsages.menuButton, out bool bButtonPressedNow))
+            if (VRHostSystem.GetLeftHandDevice()
+                .TryGetFeatureValue(CommonUsages.menuButton, out bool bButtonPressedNow))
             {
                 if (!bButtonWasPressed && bButtonPressedNow)
                 {
                     bButtonWasPressed = true;
                 }
+
                 if (!bButtonPressedNow && bButtonWasPressed) // Button was released?
                 {
                     bButtonWasPressed = false;
@@ -89,13 +91,12 @@ public class HelpMenuController : MonoBehaviour
     {
         CreateMenuFromPrefab();
         AttachCameraToMenuCanvasAndDisplayMenu();
-        StateController.isHelpMenuOpened = true;
         VRHostSystem.getXROrigin().GetComponent<HandSwinging>().enabled = false;
         VRHostSystem.getXROrigin().GetComponent<Jumping>().enabled = false;
-        
+
         //stop the timer
         FindObjectOfType<GameLogic>().isGameRunning = false;
-        
+
         //disable any objects that could hide the help menu
         if (menuInstanced)
         {
@@ -104,16 +105,15 @@ public class HelpMenuController : MonoBehaviour
             var distance = VRHostSystem.GetCamera().transform.position - centerPoint;
             var halfExtents = new Vector3(4, 2, 1);
             halfExtents.z = distance.magnitude;
-            
+
             Collider[] colliders = Physics.OverlapBox(centerPoint + 0.5f * distance, halfExtents);
-                foreach (var collider in colliders)
-                {
-                    var hitTarget = collider.gameObject;
-                    if(hitTarget.layer == LayerMask.NameToLayer("player")) continue;
-                    hitTarget.SetActive(false);
-                    hiddenObjects.Add(hitTarget);
-                }
-            
+            foreach (var collider in colliders)
+            {
+                var hitTarget = collider.gameObject;
+                if (hitTarget.layer == LayerMask.NameToLayer("player")) continue;
+                hitTarget.SetActive(false);
+                hiddenObjects.Add(hitTarget);
+            }
         }
     }
 
@@ -130,6 +130,7 @@ public class HelpMenuController : MonoBehaviour
             {
                 canvas.worldCamera = VRHostSystem.GetCamera();
             }
+
             menuInstanced.SetActive(true); // just to make sure
         }
     }
@@ -145,7 +146,8 @@ public class HelpMenuController : MonoBehaviour
             var rotation = Quaternion.identity;
             var position = where.position + translation;
             menuInstanced = Instantiate(menuPrefab, position, rotation, null);
-            menuInstanced.transform.Rotate(0, where.eulerAngles.y + VRHostSystem.getXROriginGameObject().transform.eulerAngles.y, 0);
+            menuInstanced.transform.Rotate(0,
+                where.eulerAngles.y + VRHostSystem.getXROriginGameObject().transform.eulerAngles.y, 0);
             var slideManager = menuInstanced.GetComponent<SlideManager>();
             if (slideManager)
                 slideManager.closeAction = Close;
@@ -163,7 +165,6 @@ public class HelpMenuController : MonoBehaviour
             menuInstanced.SetActive(false); // just to make sure
             Destroy(menuInstanced);
             menuInstanced = null;
-            StateController.isHelpMenuOpened = false;
             VRHostSystem.getXROrigin().GetComponent<HandSwinging>().enabled = true;
             VRHostSystem.getXROrigin().GetComponent<Jumping>().enabled = true;
         }
@@ -172,13 +173,14 @@ public class HelpMenuController : MonoBehaviour
         {
             hiddenObject.SetActive(true);
         }
-        
+
         FindObjectOfType<GameLogic>().isGameRunning = true;
-        
+
         hiddenObjects.Clear();
     }
 
-    /*public void OnDrawGizmos()
+    /* Needed for debugging what objects need to be disabled for the help menu
+    public void OnDrawGizmos()
     {
         //To use this method, add a bool started to the script and set it to true in the start method
         if (!started) return;
