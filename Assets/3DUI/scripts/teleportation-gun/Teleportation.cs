@@ -9,13 +9,15 @@ public class Teleportation : MonoBehaviour
 {
     [Tooltip("You need to manually add reference to the VRHostSystem GameObject")]
     [SerializeField] VRHostSystem VRHostSystem;
-    public string RayCollisionLayer = "Default";
+    // public string RayCollisionLayer = "Default";
     public XRRayInteractor rayInteractor;
-    public float teleportationSpeed = 8f;
+    public float teleportationSpeed = 16f;
     private RaycastHit lastRayCastHit;
+    
     private bool bButtonWasPressed = false;
     private bool firstTeleport = false;
     private bool teleporting = false;
+    
     private Vector3 target;
 
     [SerializeField] private GameObject preTravelObject;
@@ -47,11 +49,12 @@ public class Teleportation : MonoBehaviour
                     RotatePreTravelObject();
                 }
 
-                MoveTrackingSpaceRootWithTeleportation();
+                DetectTeleportationAndSetTargetPointOfTeleportation();
             }
 
             if (teleporting && target != Vector3.zero)
             {
+                // teleportation with fast motion
                 VRHostSystem.getXROriginGameObject().transform.position += ((target - VRHostSystem.getXROriginGameObject().transform.position) * (Time.deltaTime * teleportationSpeed));
                 if (Vector3.Magnitude(target - VRHostSystem.getXROriginGameObject().transform.position) < 0.8)
                 {
@@ -71,6 +74,7 @@ public class Teleportation : MonoBehaviour
         target = Vector3.zero;
     }
 
+    // after one use: invoke select exited event (in interactable events of teleportation gun)
     private void DropTeleportationGun()
     {
         SelectExitEventArgs drop = new();
@@ -106,7 +110,7 @@ public class Teleportation : MonoBehaviour
         preTravelObject.transform.rotation = Quaternion.Euler(rotationPreTravel);
     }
 
-    private void MoveTrackingSpaceRootWithTeleportation()
+    private void DetectTeleportationAndSetTargetPointOfTeleportation()
     {
         if (VRHostSystem.GetRightHandDevice().isValid)
         {
@@ -114,6 +118,7 @@ public class Teleportation : MonoBehaviour
             {
                 if (!bButtonWasPressed && rightTriggerButton && lastRayCastHit.collider != null)
                 {
+                    // triggerButton is pressed: show preTravelObject
                     bButtonWasPressed = true;
                     StateController.preTravelModeActivated = true;
                     preTravelObject.SetActive(true);
@@ -121,6 +126,7 @@ public class Teleportation : MonoBehaviour
                 }
                 if (!rightTriggerButton && bButtonWasPressed)
                 {
+                    // triggerButton released: hide preTravelObject and define target
                     GenerateSound();
                     bButtonWasPressed = false;
                     StateController.preTravelModeActivated = false;

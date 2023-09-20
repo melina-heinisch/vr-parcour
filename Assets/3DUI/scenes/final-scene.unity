@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.33537984, g: 0.33515334, b: 0.3322292, a: 0.5}
+  m_IndirectSpecularColor: {r: 0.33541247, g: 0.33518672, b: 0.33225998, a: 0.5}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27490,7 +27490,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: {fileID: 1815802354}
   radialProgressBar: {fileID: 1182445531}
-  timerIsActive: 0
 --- !u!1 &1828031014
 GameObject:
   m_ObjectHideFlags: 0
@@ -28307,9 +28306,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VRHostSystem: {fileID: 39433392}
-  RayCollisionLayer: Default
   rayInteractor: {fileID: 1860304544}
-  teleportationSpeed: 8
+  teleportationSpeed: 16
   preTravelObject: {fileID: 659131856}
 --- !u!114 &1860304546
 MonoBehaviour:

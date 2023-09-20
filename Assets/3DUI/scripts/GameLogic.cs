@@ -74,12 +74,10 @@ public class GameLogic : MonoBehaviour
         xrInteractorLineVisual = rightHand.GetComponent<XRInteractorLineVisual>();
         timer = restartTimerObj.GetComponent<Timer>();
         
-        // Set time correctly for all elemets that show it in the scene
+        // Set time correctly for all elements that show it in the scene
         timeRemaining = totalTime;
         string time = GetTimeInMinSec(timeRemaining);
         timeTexts.ForEach(elem => elem.text = time);
-
-        
 
         //Add dummy data to scoreboard, if none is saved there
         var sbm = ScoreBoardManager.Instance;
