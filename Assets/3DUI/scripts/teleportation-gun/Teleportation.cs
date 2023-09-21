@@ -9,7 +9,6 @@ public class Teleportation : MonoBehaviour
 {
     [Tooltip("You need to manually add reference to the VRHostSystem GameObject")]
     [SerializeField] VRHostSystem VRHostSystem;
-    // public string RayCollisionLayer = "Default";
     public XRRayInteractor rayInteractor;
     public float teleportationSpeed = 16f;
     private RaycastHit lastRayCastHit;
@@ -122,7 +121,6 @@ public class Teleportation : MonoBehaviour
                     bButtonWasPressed = true;
                     StateController.preTravelModeActivated = true;
                     preTravelObject.SetActive(true);
-                    preTravelObject.transform.rotation = VRHostSystem.getXROriginGameObject().transform.rotation;
                 }
                 if (!rightTriggerButton && bButtonWasPressed)
                 {
