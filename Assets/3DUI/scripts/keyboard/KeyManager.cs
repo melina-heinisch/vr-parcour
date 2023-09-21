@@ -28,7 +28,7 @@ namespace _3DUI.scripts.keyboard
             if (isShifted)
             {
                 isShifted = false;
-                text.text = lowerCaseChar;
+                text.text = lowerCaseChar; // update key on keyboard
             }
             else
             {

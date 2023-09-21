@@ -10,7 +10,7 @@ namespace _3DUI.scripts.scoreboard
     {
         public static ScoreBoardManager Instance { get; private set; }
 
-        public List<ScoreBoardEntry> scoreBoard;
+        public List<ScoreBoardEntry> scoreBoard; // functionality from IComparable (Add, Sort) 
 
         private string savePath;
         
